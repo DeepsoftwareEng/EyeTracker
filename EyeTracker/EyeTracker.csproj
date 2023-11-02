@@ -5,6 +5,38 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Logo2.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resource\addicon.png" />
+    <None Remove="Resource\delicon.png" />
+    <None Remove="Resource\editicon.png" />
+    <None Remove="Resource\LogoutIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Logo2.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\addicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\delicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\editicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\LogoutIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="SQL\" />
+  </ItemGroup>
 
 </Project>

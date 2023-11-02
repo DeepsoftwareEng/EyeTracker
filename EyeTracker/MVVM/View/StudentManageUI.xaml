@@ -18,6 +18,6 @@
         <ScrollViewer Grid.Column="0" Margin="0,0,5,0">
             <WrapPanel x:Name="StudentWrp"/>
         </ScrollViewer>
-        <Comp:StudentInfo Grid.Column="1"/>
+        <Comp:StudentInfo Grid.Column="1" x:Name="StudentInfo"/>
     </Grid>
 </Page>

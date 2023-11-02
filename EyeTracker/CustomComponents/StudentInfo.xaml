@@ -24,51 +24,83 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" BorderThickness="1 " Margin="32,6,32,4">
-            <Image Stretch="UniformToFill"/>
+            <Image Stretch="UniformToFill" x:Name="StudentImg"/>
         </Border>
         <TextBlock Grid.Row="1"
-                   Text="Ngày sinh: "/>
+                   Text="  Ngày sinh: "
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="2"
-                   Text="Năm nhập học: "/>
+                   Text="  Năm nhập học: "
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="3"
-                   Text="Địa chỉ: "
+                   Text="  Địa chỉ: "
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
                    />
-        <TextBlock Text="Độ cận thị: "
-                   Grid.Row="4"/>
-        <TextBlock Text="Lớp: "
-                   Grid.Row="5"/>
-        <TextBlock Text="Giáo viên chủ nhiệm: "
-                   Grid.Row="6 "/>
+        <TextBlock Text="  Độ cận thị: "
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="  Lớp: "
+                   Grid.Row="5"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text=" Giáo viên chủ nhiệm: "
+                   Grid.Row="6 "
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="1"
                    x:Name="NameTxb"
                    FontSize="17"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   Grid.ColumnSpan="2"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="1"
                    Grid.Column="1"
-                   x:Name="DateTxb"/>
+                   Grid.ColumnSpan="2"
+                   x:Name="DateTxb"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
-                   x:Name="EnrollTxb"/>
+                   Grid.ColumnSpan="2"
+                   x:Name="EnrollTxb"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="3"
                    Grid.Column="1"
-                   x:Name="AddressTxb"/>
+                   Grid.ColumnSpan="2"
+                   x:Name="AddressTxb"
+                   TextWrapping="Wrap"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="4"
                    Grid.Column="1"
-                   x:Name="MyopiaTxb"/>
+                   Grid.ColumnSpan="2"
+                   x:Name="MyopiaTxb" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="5"
                    Grid.Column="1"
-                   x:Name="ClassTxb"/>
+                   Grid.ColumnSpan="2"
+                   x:Name="ClassTxb"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="6"
                    Grid.Column="1"
-                   x:Name="TeacherTxb"/>
-        <Border Grid.Row="7 " Margin="67,5,25,6"
+                   Grid.ColumnSpan="2"
+                   x:Name="TeacherTxb"
+                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <Border Grid.Row="7 " Margin="66,1,26,2"
                 Height="28"
                 Width="30"
                 Background="Aqua" 
                 MouseEnter="Border_MouseEnter"
                 MouseLeave="Border_MouseLeave">
-            <Image Source="/Resource/addicon.png" Margin="-4,-2,-4,-3"/>
+            <Image Source="/Resource/addicon.png" Margin="-7,-4,-7,-4"/>
         </Border>
         <Border Grid.Row="7"
                 Height="28"

@@ -37,6 +37,11 @@
   <ItemGroup>
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="SQL\" />
+    <Folder Include="UserData\StudentImage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
   </ItemGroup>
 
 </Project>

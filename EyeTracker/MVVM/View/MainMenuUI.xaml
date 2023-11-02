@@ -22,11 +22,12 @@
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="Aquamarine" 
-                   Grid.RowSpan="7"
+                   Grid.RowSpan="8"
                    Grid.ColumnSpan="2" />
         <Rectangle Fill="Aqua" 
                    Grid.Column="2" 
@@ -47,14 +48,14 @@
                    FontSize="8" 
                    Grid.Column="1"
                    Foreground="WhiteSmoke" Margin="5,35,15,1" />
-        <TextBlock Text="Quản lý lớp"
+        <TextBlock Text="  Quản lý lớp"
                    Foreground="Blue"
                    FontWeight="Bold"
                    FontSize="17"
                    Grid.Row="2 "
                    Grid.ColumnSpan="2"
                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Margin="0,31,0,10" />
-        <TextBlock Text="Quản lý học sinh"
+        <TextBlock Text="  Quản lý học sinh"
                    Foreground="Blue"
                    FontWeight="Bold"
                    FontSize="17" 
@@ -62,7 +63,7 @@
                    Grid.ColumnSpan="2"
                    Grid.Row="3"
                    MouseLeftButtonDown="ManageStudentTxb_MouseLeftButtonDown" Margin="0,20,0,17"/>
-        <TextBlock Text="Xem độ cận "
+        <TextBlock Text="  Xem độ cận "
                    Foreground="Blue"
                    FontWeight="Bold"
                    FontSize="17" 
@@ -72,13 +73,13 @@
                    MouseLeftButtonDown="ViewChartTxb_MouseLeftButtonDown" Margin="5,10,0,30"/>
         <Image Source="/Resource/LogoutIcon.png" 
                Grid.ColumnSpan="2"
-               Grid.Row="5"
+               Grid.Row="6"
                x:Name="LogoutImg"
-               MouseLeftButtonDown="LogoutImg_MouseLeftButtonDown" Margin="6,68,22,0"  />
+               MouseLeftButtonDown="LogoutImg_MouseLeftButtonDown" />
         <Frame x:Name="ManageContentChange"
                Grid.Column="2"
                Grid.Row="1"
-               Grid.RowSpan="5"
+               Grid.RowSpan="6"
                Grid.ColumnSpan="3"/>
         <TextBlock Text="Xin chào"
                    FontSize="32"

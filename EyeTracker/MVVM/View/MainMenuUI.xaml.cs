@@ -32,7 +32,7 @@ namespace EyeTracker.MVVM.View
 
         private void ManageStudentTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ManageContentChange.NavigationService.Navigate(new StudentManageUI());
+            ManageContentChange.NavigationService.Navigate(new StudentManageUI("GV01"));
         }
 
         private void ViewChartTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

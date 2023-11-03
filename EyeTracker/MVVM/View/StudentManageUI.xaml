@@ -19,5 +19,9 @@
             <WrapPanel x:Name="StudentWrp"/>
         </ScrollViewer>
         <Comp:StudentInfo Grid.Column="1" x:Name="StudentInfo"/>
+        <Comp:ChangingStudentView Grid.Column="1" 
+                                  x:Name="StudentChange" 
+                                  IsEnabled="False" 
+                                  Visibility="Hidden"/>
     </Grid>
 </Page>

@@ -10,9 +10,11 @@
 
   <ItemGroup>
     <None Remove="Resource\addicon.png" />
+    <None Remove="Resource\backicon.png" />
     <None Remove="Resource\delicon.png" />
     <None Remove="Resource\editicon.png" />
     <None Remove="Resource\LogoutIcon.png" />
+    <None Remove="Resource\saveicon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +25,9 @@
     <Resource Include="Resource\addicon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resource\backicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resource\delicon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -30,6 +35,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\LogoutIcon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\saveicon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

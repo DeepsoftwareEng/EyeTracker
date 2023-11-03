@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EyeTracker.MVVM.Model
 {
-    internal class HocSinh
+    public class HocSinh
     {
         public int MaHocSinh { get; set; }
         public string HoTen { get; set; }

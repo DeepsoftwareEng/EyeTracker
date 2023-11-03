@@ -38,5 +38,9 @@ namespace EyeTracker.CustomComponents
             SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(211,211, 211));
             mask.Background = brush;
         }
+        public void RemoveImage()
+        {
+            StudentImg.Source = null;
+        }
     }
 }

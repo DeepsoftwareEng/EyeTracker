@@ -1,40 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using EyeTracker.MVVM.Model;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EyeTracker.CustomComponents
 {
     /// <summary>
-    /// Interaction logic for StudentInfo.xaml
+    /// Interaction logic for ChangingStudentView.xaml
     /// </summary>
-    public partial class StudentInfo : UserControl
+    public partial class ChangingStudentView : UserControl
     {
-        public StudentInfo()
+        public ChangingStudentView()
         {
             InitializeComponent();
         }
-        public void addInfo(string name, DateOnly birth, DateOnly enroll, string address, double myopia, string classes, string teacher)
+        public void addInfo(HocSinh t)
         {
-            NameTxb.Text = name;
-            DateTxb.Text = birth.ToString("dd/MM/yyyy");
-            EnrollTxb.Text = enroll.ToString("dd/MM/yyyy");
-            AddressTxb.Text = address.ToString();
-            MyopiaTxb.Text = myopia.ToString();
-            ClassTxb.Text = classes.ToString();
-            TeacherTxb.Text = teacher.ToString();
+            NameTxb.Text = t.HoTen;
+            DateTxb.Text = t.NgaySinh.ToString("dd/MM/yyyy");
+            EnrollTxb.Text = t.NamNhapHoc.ToString("dd/MM/yyyy");
+            AddressTxb.Text = t.DiaChi.ToString();
+            MyopiaTxb.Text = t.DoCanThi.ToString();
+            ClassTxb.Text = t.MaLop.ToString();
+            TeacherTxb.Text = t.MaGV.ToString();
         }
-        public void Clear()
+        public void Clear() 
         {
             NameTxb.Text = string.Empty;
             DateTxb.Text = string.Empty;

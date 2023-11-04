@@ -5,8 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="60" d:DesignWidth="150" 
+             Background="LightGray"
+             MouseEnter="StudentTab_MouseEnter"
+             MouseLeave="StudentTab_MouseLeave">
     <Grid>
-            
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Margin="0,0,0,2">
+            <Grid Height="55" >
+                <Grid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=mask}"/>
+                </Grid.OpacityMask>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="mask" 
+            Grid.ColumnSpan="3" 
+            Background="LightGray" 
+            CornerRadius="8"/>
+                <Image x:Name="TeacherImg"/>
+                <TextBlock Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Name="TeacherNameTxb"
+                   TextWrapping="Wrap"/>
+
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

@@ -20,7 +20,7 @@ namespace EyeTracker.MVVM.View
     /// </summary>
     public partial class ViewChartUI : Page
     {
-        public ViewChartUI()
+        public ViewChartUI(string magv)
         {
             InitializeComponent();
         }

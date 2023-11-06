@@ -20,24 +20,26 @@ namespace EyeTracker.MVVM.View
     /// </summary>
     public partial class MainMenuUI : Page
     {
-        public MainMenuUI()
+        private string MaGV;
+        public MainMenuUI(string magv)
         {
             InitializeComponent();
+            MaGV = magv;
         }
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ManageContentChange.NavigationService.Navigate(new ClassManageUI());
+            ManageContentChange.NavigationService.Navigate(new ClassManageUI(MaGV));
         }
 
         private void ManageStudentTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ManageContentChange.NavigationService.Navigate(new StudentManageUI("GV01"));
+            ManageContentChange.NavigationService.Navigate(new StudentManageUI(MaGV));
         }
 
         private void ViewChartTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ManageContentChange.NavigationService.Navigate(new ViewChartUI());
+            ManageContentChange.NavigationService.Navigate(new ViewChartUI(MaGV));
         }
 
         private void LogoutImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

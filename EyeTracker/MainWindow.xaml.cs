@@ -12,7 +12,7 @@ namespace EyeTracker
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new MainMenuUI());
+            MainFrame.NavigationService.Navigate(new LoginUI());
         }
     }
 }

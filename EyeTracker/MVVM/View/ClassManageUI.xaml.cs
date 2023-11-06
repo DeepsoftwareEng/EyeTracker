@@ -20,7 +20,7 @@ namespace EyeTracker.MVVM.View
     /// </summary>
     public partial class ClassManageUI : Page
     {
-        public ClassManageUI()
+        public ClassManageUI(string magv)
         {
             InitializeComponent();
         }

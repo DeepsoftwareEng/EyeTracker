@@ -3,12 +3,22 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:EyeTracker.MVVM.View"
+      xmlns:local="clr-namespace:EyeTracker.MVVM.View" 
+      xmlns:chart1="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="280" d:DesignWidth="650"
+      Background="LightGray" 
       Title="ViewChartUI">
 
     <Grid>
-        
+        <StackPanel x:Name="ClassListBtn" Orientation="Vertical" Margin="5,0,5,252"/>
+        <chart1:PieChart x:Name="MypoiaChart" Hoverable="True" Margin="89,42,235,0" >
+            <chart1:PieChart.ChartLegend>
+                <chart1:DefaultLegend BulletSize="15" TextBlock.FontSize="14"/>
+            </chart1:PieChart.ChartLegend>
+            <chart1:PieChart.DataTooltip>
+                <chart1:DefaultTooltip BulletSize="15"/>
+            </chart1:PieChart.DataTooltip>
+        </chart1:PieChart>
     </Grid>
 </Page>

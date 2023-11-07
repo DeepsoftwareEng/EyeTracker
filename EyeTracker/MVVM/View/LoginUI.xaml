@@ -38,6 +38,7 @@
         <TextBox Grid.Column="1" 
                  Grid.Row="1" 
                  Name="UsernameTxb" 
+                 FontSize="12"
                  Margin="74,16,10,16"/>
         <TextBlock Grid.Column="1" 
                    Grid.Row="2" 
@@ -47,6 +48,7 @@
         <PasswordBox Grid.Column="1" 
                  Grid.Row="2" 
                  Name="PassTxb" Margin="74,5,10,3" 
+                 FontSize="12"
                  />
         <Button Grid.Column="1" 
                 Grid.Row="3" 

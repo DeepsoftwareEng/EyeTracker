@@ -68,7 +68,7 @@ namespace EyeTracker.MVVM.View
         {
             SeriesCollection seriesViews = new SeriesCollection();
             string malop = (sender as Button).Tag.ToString();
-            var SameClass = from HocSinhChart in students where HocSinhChart.MaLop == malop select HocSinhChart;
+            var SameClass = from HocSinhChart in students where HocSinhChart.MaLop == malop orderby HocSinhChart.Mypoia select HocSinhChart;
             List<HocSinhChart> sameclass = SameClass.ToList();
             var result = sameclass.Select(s => s.Mypoia).Distinct();
             foreach (var i in result)
@@ -76,7 +76,7 @@ namespace EyeTracker.MVVM.View
                 PieSeries t = new PieSeries();
                 t.Title = i.ToString();
                 t.Values = new ChartValues<ObservableValue> { new ObservableValue(sameclass.Where(s => s.Mypoia == i).Count())};
-                t.LabelPoint = chartPoint => string.Format(i.ToString());
+                t.LabelPoint = chartPoint => string.Format(i.ToString()+": " + (chartPoint.Participation*100).ToString().Substring(0,6)+"%");
                 t.DataLabels = true;
                 seriesViews.Add(t);
             }

@@ -16,9 +16,6 @@
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -27,27 +24,6 @@
         </Border>
         <TextBlock Grid.Row="1"
                Text="  Ngày sinh: "
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="2"
-               Text="  Năm nhập học: "
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="3"
-               Text="  Địa chỉ: "
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"
-               />
-        <TextBlock Text="  Độ cận thị: "
-               Grid.Row="4"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Text="  Lớp: "
-               Grid.Row="5"
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Text=" Giáo viên chủ nhiệm: "
-               Grid.Row="6 "
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="1"
@@ -63,37 +39,16 @@
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
         <TextBlock Grid.Row="2"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               x:Name="EnrollTxb"
+               Text="  Lớp chủ nhiệm: "
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="3"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               x:Name="AddressTxb"
-               TextWrapping="Wrap"
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="4"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               x:Name="MyopiaTxb" 
-               VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="5"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
+        <TextBlock Grid.Column="1"
                x:Name="ClassTxb"
+               FontSize="17"
+               Grid.Row="2"
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
-        <TextBlock Grid.Row="6"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               x:Name="TeacherTxb"
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left"/>
-        <Border Grid.Row="7 " Margin="66,1,26,2"
+        <Border Grid.Row="4 " Margin="66,1,26,2"
             Height="28"
             Width="30"
             Background="Aqua" 
@@ -103,7 +58,7 @@
             x:Name="AddBtn">
             <Image Source="/Resource/addicon.png" Margin="-7,-4,-7,-4"/>
         </Border>
-        <Border Grid.Row="7"
+        <Border Grid.Row="4"
             Height="28"
             Width="30"
             Background="Aqua"
@@ -113,7 +68,7 @@
             x:Name="EditBtn">
             <Image Source="/Resource/editicon.png "/>
         </Border>
-        <Border Grid.Row="7 " Grid.Column="2" 
+        <Border Grid.Row="4 " Grid.Column="2" 
             Background="Aqua"
             Height="28"
             Width="30"

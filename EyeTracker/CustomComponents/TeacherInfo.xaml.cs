@@ -24,25 +24,17 @@ namespace EyeTracker.CustomComponents
         {
             InitializeComponent();
         }
-        public void addInfo(string name, DateOnly birth, DateOnly enroll, string address, double myopia, string classes, string teacher)
+        public void addInfo(string name, DateOnly birth, string classes)
         {
             NameTxb.Text = name;
             DateTxb.Text = birth.ToString("dd/MM/yyyy");
-            EnrollTxb.Text = enroll.ToString("dd/MM/yyyy");
-            AddressTxb.Text = address.ToString();
-            MyopiaTxb.Text = myopia.ToString();
-            ClassTxb.Text = classes.ToString();
-            TeacherTxb.Text = teacher.ToString();
+            ClassTxb.Text = classes;
         }
         public void Clear()
         {
             NameTxb.Text = string.Empty;
             DateTxb.Text = string.Empty;
-            EnrollTxb.Text = string.Empty;
-            AddressTxb.Text = string.Empty;
-            MyopiaTxb.Text = string.Empty;
             ClassTxb.Text = string.Empty;
-            TeacherTxb.Text = string.Empty;
         }
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {

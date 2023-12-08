@@ -24,5 +24,13 @@ namespace EyeTracker.MVVM.View
         {
             InitializeComponent();
         }
+        private void LogoutImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void QuanLyGiaoVien_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ManageContentChange.NavigationService.Navigate(new TeacherManageUI());
+        }
     }
 }

@@ -1,17 +1,15 @@
-﻿using System;
+﻿using EyeTracker.CustomComponents;
+using EyeTracker.MVVM.Model;
+using Microsoft.Data.SqlClient;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EyeTracker.MVVM.View
 {
@@ -20,9 +18,236 @@ namespace EyeTracker.MVVM.View
     /// </summary>
     public partial class TeacherManageUI : Page
     {
+        private DataConnection dc = new DataConnection();
+        private SqlCommand cmd;
+        private List<GiaoVien> giaoViens = new List<GiaoVien>();
+        private List<Lop> lops = new List<Lop>();
+        //private List<GiaoVienLop> giaoVienLops = new();
+        private static string binFolderPath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
+        private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
+        private static string dataFolderPath = System.IO.Path.Combine(fix, "UserData");
+        private string choosenImage;
+        private string choosenTeacherId;
+
         public TeacherManageUI()
         {
             InitializeComponent();
+            Loadfunction();
+            LoadData();
+        }
+        private void Loadfunction()
+        {
+            TeacherInfo.AddBtn.MouseLeftButtonDown += AddTeacher;
+            TeacherInfo.EditBtn.MouseLeftButtonDown += EditTeacher;
+            TeacherInfo.DelBtn.MouseLeftButtonDown += DeleteTeacher;
+            TeacherChange.AddImgBtn.MouseLeftButtonDown += AddImage;
+            TeacherChange.BackBtn.MouseLeftButtonDown += GoBack;
+        }
+        private void LoadData()
+        {
+            string query = "Select * from GiaoVien";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                GiaoVien t = new();
+                t.MaGV = reader.GetString(0);
+                t.TenGV = reader.GetString(1);
+                t.NgaySinh = DateOnly.FromDateTime(reader.GetDateTime(2));
+                t.TenGV = reader.GetString(3);
+                TeacherWrp.Children.Add(teacherTabs(t));
+                giaoViens.Add(t);
+            }
+            dc.GetConnection().Close();
+            query = "Select * from Lop";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Lop t = new();
+                t.TenLop = reader.GetString(0);
+                t.MaGV = reader.GetString(1);
+                t.MaGV = reader.GetString(2);
+                lops.Add(t);
+            }
+            dc.GetConnection().Close();
+        }
+        private TeacherTab teacherTabs(GiaoVien gv)
+        {
+            TeacherTab temp = new TeacherTab();
+            temp.TeacherNameTxb.Text = gv.TenGV;
+            Stream fs = File.Open(dataFolderPath + $"\\TeacherImage\\{gv.MaGV}.png", FileMode.Open);
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.CacheOption = BitmapCacheOption.OnLoad; // This will allow you to close the stream after EndInit
+            bmp.StreamSource = fs;
+            bmp.EndInit();
+            temp.TeacherImg.Source = bmp;
+            fs.Close();
+            temp.MouseLeftButtonDown += ChooseTeacher;
+            temp.Tag = gv.MaGV;
+            return temp;
+        }
+
+        private void ChooseTeacher(object sender, MouseButtonEventArgs e)
+        {
+            string teacherId = (sender as TeacherTab).Tag.ToString();
+            var lopCN = lops.Where(c => c.MaGV == teacherId).ToList();
+            var gv = giaoViens.Where(t => t.MaGV == teacherId).FirstOrDefault();
+            TeacherInfo.addInfo(gv,lopCN);
+            Stream fs = File.Open(dataFolderPath + $"\\TeacherImage\\{gv.MaGV}.png", FileMode.Open);
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.CacheOption = BitmapCacheOption.OnLoad; // This will allow you to close the stream after EndInit
+            bmp.StreamSource = fs;
+            bmp.EndInit();
+            TeacherInfo.TeacherImg.Source = bmp;
+            fs.Close();
+            choosenTeacherId = teacherId;
+            TeacherInfo.AddBtn.Tag = gv.MaGV;
+            TeacherInfo.EditBtn.Tag = gv.MaGV;
+        }
+
+        private void GoBack(object sender, MouseButtonEventArgs e)
+        {
+            TeacherChange.RemoveData();
+            TeacherChange.Visibility = Visibility.Hidden;
+        }
+
+        private void AddImage(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp, *.gif)|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            if (fileDialog.ShowDialog() == true)
+            {
+                choosenImage = fileDialog.FileName;
+                Stream fs = File.Open(fileDialog.FileName, FileMode.Open);
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad;
+                bmp.StreamSource = fs;
+                bmp.EndInit();
+                TeacherChange.TeacherImg.Source = bmp;
+                fs.Close();
+            }
+        }
+
+        private void DeleteTeacher(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void EditTeacher(object sender, MouseButtonEventArgs e)
+        {
+            GiaoVien temp = new();
+            temp = giaoViens.Where(t => t.MaGV == choosenTeacherId).FirstOrDefault();
+            var lopCN = lops.Where(c => c.MaGV == choosenTeacherId).ToList();
+            TeacherChange.SetData(temp, lopCN,lops);
+            TeacherChange.Visibility = Visibility.Visible;
+            TeacherChange.IsEnabled = true;
+            TeacherChange.SaveBtn.MouseLeftButtonDown += SaveEditTeacher;
+            TeacherChange.SaveBtn.Tag = (sender as Border).Tag.ToString();
+        }
+        private void SaveEditClass(string magv, List<Lop> ds)
+        {
+            string query = "Update Lop Set GVCN = @gvcn where MaLop = @malop";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query,dc.GetConnection());
+            cmd.Parameters.AddWithValue("@gvcn", magv);
+            foreach(var i in ds)
+            {
+                cmd.Parameters.AddWithValue("@malop", i.MaLop);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            dc.GetConnection().Close();
+        }
+        private void SaveEditTeacher(object sender, MouseButtonEventArgs e)
+        {
+            DateOnly dob = DateOnly.Parse(TeacherChange.DateTxb.Text);
+            string query = "Update GiaoVien set TenGV =@tengv, NgaySinh = @ngaysinh where MaGV= @magv";
+            List<Lop> ds = new();
+            foreach (var i in TeacherChange.ClassLvw.Items)
+            {
+                var result = lops.Where(c => c.TenLop == i.ToString()).FirstOrDefault();
+                ds.Add(result);
+            }
+            SaveEditClass((sender as Border).Tag.ToString(), ds);
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            cmd.Parameters.AddWithValue("@tengv", TeacherChange.NameTxb.Text);
+            cmd.Parameters.AddWithValue("@ngaysinh", dob.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@magv", (sender as Border).Tag.ToString());
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Thanh cong");
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            dc.GetConnection().Close();
+        }
+
+        private void AddTeacher(object sender, MouseButtonEventArgs e)
+        {
+            TeacherChange.Visibility = Visibility.Visible;
+            TeacherChange.IsEnabled = true;
+            TeacherChange.SetClasses(lops);
+            TeacherChange.SaveBtn.MouseLeftButtonDown += SaveNewTeacher;
+        }
+        private string NewId()
+        {
+            string t = "";
+            string query = "select Top 1 * from GiaoVien Order By MaGV DESC";
+            if(dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            try
+            {
+                t = cmd.ExecuteScalar().ToString().Substring(2);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            int temp = Int32.Parse(t);
+            temp++;
+            if (temp < 10)
+                return $"0{temp}";
+            return $"{temp}";
+        }
+        private void SaveNewTeacher(object sender, MouseButtonEventArgs e)
+        {
+            DateOnly date = DateOnly.Parse(TeacherChange.DateTxb.Text);
+            string query = "insert into GiaoVien values(@magv,@tengv,@ngaysinh,@tentk)";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            cmd.Parameters.AddWithValue("@magv", "GV" +NewId);
+            cmd.Parameters.AddWithValue("@tengv", TeacherChange.NameTxb.Text);
+            cmd.Parameters.AddWithValue("@ngaysinh", date.ToString("yyyy-MM-dd"));
+            cmd.Parameters.AddWithValue("@tentk", TeacherChange.AccountTxb.Text);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Thanh cong");
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dc.GetConnection().Close();
         }
     }
 }

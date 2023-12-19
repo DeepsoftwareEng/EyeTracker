@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
+             Background="LightGray"
              d:DesignHeight="280 " d:DesignWidth="244">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" BorderThickness="1 " Margin="32,6,32,4">
-            <Image Stretch="UniformToFill" x:Name="StudentImg"/>
+            <Image Stretch="UniformToFill" x:Name="TeacherImg"/>
         </Border>
         <TextBlock Grid.Row="1"
                Text="  Ngày sinh: "
@@ -42,12 +43,15 @@
                Text="  Lớp chủ nhiệm: "
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="1"
-               x:Name="ClassTxb"
-               FontSize="17"
-               Grid.Row="2"
-                VerticalAlignment="Center"
+        <ScrollViewer Grid.Row="2"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2">
+            <ListView 
+               x:Name="ClassLwv"
+               FontSize="8"
+               VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
+        </ScrollViewer>
         <Border Grid.Row="4 " Margin="66,1,26,2"
             Height="28"
             Width="30"

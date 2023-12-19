@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
+             Background="LightGray"
              d:DesignHeight="280 " d:DesignWidth="244">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,9 +19,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1 " Margin="32,6,32,4">
-            <Image Stretch="UniformToFill" x:Name="StudentImg"/>
+        <Border BorderBrush="Black" BorderThickness="1 " Margin="23,6,57,12">
+            <Image Stretch="Uniform" x:Name="TeacherImg"/>
+        </Border>
+        <Border Background="Aqua" 
+                MouseEnter="Border_MouseEnter"
+                MouseLeave="Border_MouseLeave"
+                x:Name="AddImgBtn"
+                Grid.Column="0"
+                Grid.Row="0" Margin="72,41,45,12">
+            <Image Source="/Resource/addicon.png" Margin="-4,-2,-4,-2"/>
         </Border>
         <TextBlock Grid.Row="1"
                Text="  Ngày sinh: "
@@ -35,47 +46,64 @@
                Grid.Column="1"
                Grid.ColumnSpan="2"
                x:Name="DateTxb"
-                VerticalAlignment="Top"
-               HorizontalAlignment="Left" Width="112" Margin="5,18,0,0"/>
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left" Width="112" Margin="5,0,0,0"/>
         <TextBlock Grid.Row="2"
                Text="  Lớp chủ nhiệm: "
                 VerticalAlignment="Center"
                HorizontalAlignment="Left"/>
-        <TextBox Grid.Column="1"
-               x:Name="ClassTxb"
-               FontSize="17"
-               Grid.Row="2"
-                VerticalAlignment="Center"
-               HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="112" Margin="5,0,0,0" Height="16"/>
-        <Border Grid.Row="4 " Margin="66,1,26,2"
-            Height="28"
-            Width="30"
-            Background="Aqua" 
-            MouseEnter="Border_MouseEnter"
-            MouseLeave="Border_MouseLeave"
-            CornerRadius="6"
-            x:Name="AddBtn">
-            <Image Source="/Resource/addicon.png" Margin="-7,-4,-7,-4"/>
+        <ScrollViewer
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2">
+            <ListView 
+               x:Name="ClassLvw"
+               FontSize="8"  
+                Width="112"  
+                Height="75"/>
+        </ScrollViewer>
+        <Button Grid.Row="3"
+                Content="Thêm"
+                x:Name="AddClassBtn" Margin="7,9,63,10"
+            />
+        <Button Grid.Row="3"
+        Content="Xóa"
+        x:Name="DelClassBtn" Margin="66,9,4,10"
+    />
+        <TextBlock Grid.Row="4"
+                   Text="  Chọn 1 lớp:"
+                   VerticalAlignment="Center"
+                   />
+        <ComboBox x:Name="ClassChooseCb"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="4" Margin="0,14,10,10"
+                  />
+        <Border Grid.Row="7 " Margin="66,1,26,2"
+        Height="28"
+        Width="30"
+        Background="Aqua" 
+        MouseEnter="Border_MouseEnter"
+        MouseLeave="Border_MouseLeave"
+        x:Name="BackBtn">
+            <Image Source="/Resource/backicon.png" Margin="5,4,4,4"/>
         </Border>
-        <Border Grid.Row="4"
-            Height="28"
-            Width="30"
-            Background="Aqua"
-            MouseEnter="Border_MouseEnter"
-            MouseLeave="Border_MouseLeave" Margin="5,1,6,2" Grid.Column="1" 
-            CornerRadius="6"
-            x:Name="EditBtn">
-            <Image Source="/Resource/editicon.png "/>
+        <Border Grid.Row="7 " Grid.Column="2" 
+        Background="Aqua"
+        Height="28"
+        Width="30"
+        MouseEnter="Border_MouseEnter"
+        MouseLeave="Border_MouseLeave" Margin="22,1,29,2"
+        x:Name="SaveBtn">
+            <Image Source="/Resource/saveicon.png" Margin="5,4,4,4"/>
         </Border>
-        <Border Grid.Row="4 " Grid.Column="2" 
-            Background="Aqua"
-            Height="28"
-            Width="30"
-            MouseEnter="Border_MouseEnter"
-            MouseLeave="Border_MouseLeave" Margin="22,1,29,2"
-            CornerRadius="6"
-            x:Name="DelBtn">
-            <Image Source="/Resource/delicon.png"/>
-        </Border>
+        <TextBlock Grid.Row="5"
+                   Text="  Tài khoản: "
+                   VerticalAlignment="Center"/>
+        <TextBox  Grid.Column="1"
+                  Grid.Row="5"
+                  Grid.ColumnSpan="2" Margin="5,11,10,11"   
+                  x:Name="AccountTxb"/>
     </Grid>
 </UserControl>

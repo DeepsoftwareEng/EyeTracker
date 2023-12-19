@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace EyeTracker.MVVM.Model
 {
-    public class Lop
+    public class GiaoVienLop
     {
-        public string MaLop { get; set; }
-        public string TenLop { get; set; }
         public string MaGV { get; set; }
+        public string MaLop { get; set; }
     }
 }

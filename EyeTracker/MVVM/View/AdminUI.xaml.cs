@@ -26,7 +26,7 @@ namespace EyeTracker.MVVM.View
         }
         private void LogoutImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            this.NavigationService.Navigate(new LoginUI());
         }
         private void QuanLyGiaoVien_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

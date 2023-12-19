@@ -39,18 +39,37 @@ namespace EyeTracker.MVVM.View
             
             if(temp == 1)
             {
-                query = "Select MaGV from GiaoVien where TenTaiKhoan = @tentk";
+                query = "Select ChucVu from TaiKhoan where TenTaiKhoan = @tentk";
                 cmd = new SqlCommand(query, dc.GetConnection());
+                string role = "";
                 string magv = "";
                 try
                 {
                     cmd.Parameters.AddWithValue("@tentk", UsernameTxb.Text);
-                    magv = cmd.ExecuteScalar().ToString();
+                    role = cmd.ExecuteScalar().ToString();
                 }catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                this.NavigationService.Navigate(new MainMenuUI(magv));
+                if(role.ToUpper() == "ADMIN")
+                {
+                    this.NavigationService.Navigate(new AdminUI());
+                }
+                else
+                {
+                    query = "Select MaGV from GiaoVien where TenTaiKhoan = @tentk";
+                    cmd = new SqlCommand(query , dc.GetConnection());
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@temtk", UsernameTxb.Text);
+                        magv = cmd.ExecuteScalar().ToString();  
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    this.NavigationService.Navigate(new MainMenuUI(magv));
+                }
+                
             }
             else
             {

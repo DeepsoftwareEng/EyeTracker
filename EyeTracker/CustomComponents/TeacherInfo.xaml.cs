@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EyeTracker.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,17 +25,21 @@ namespace EyeTracker.CustomComponents
         {
             InitializeComponent();
         }
-        public void addInfo(string name, DateOnly birth, string classes)
+        public void addInfo(GiaoVien t, List<Lop> lops)
         {
-            NameTxb.Text = name;
-            DateTxb.Text = birth.ToString("dd/MM/yyyy");
-            ClassTxb.Text = classes;
+            NameTxb.Text = t.TenGV;
+            DateTxb.Text = t.NgaySinh.ToString("dd/MM/yyyy");
+            foreach(var i in lops)
+            {
+                ClassLwv.Items.Add(i.TenLop);
+            }
+
         }
         public void Clear()
         {
             NameTxb.Text = string.Empty;
             DateTxb.Text = string.Empty;
-            ClassTxb.Text = string.Empty;
+            ClassLwv.Items.Clear();
         }
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {

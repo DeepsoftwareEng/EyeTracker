@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EyeTracker.MVVM.Model
 {
-    internal class GiaoVien
+    public class GiaoVien
     {
         public string MaGV { get; set; }
         public string TenGV { get; set; }

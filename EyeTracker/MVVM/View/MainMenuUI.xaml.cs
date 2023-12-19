@@ -25,6 +25,7 @@ namespace EyeTracker.MVVM.View
         {
             InitializeComponent();
             MaGV = magv;
+            ManageContentChange.NavigationService.Navigate(new DashBoard());
         }
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -44,7 +45,12 @@ namespace EyeTracker.MVVM.View
 
         private void LogoutImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            ManageContentChange.NavigationService.Navigate(new LoginUI());
+        }
 
+        private void DashboardTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ManageContentChange.NavigationService.Navigate(new DashBoard());
         }
     }
 }

@@ -61,7 +61,7 @@ namespace EyeTracker.MVVM.View
                     cmd = new SqlCommand(query , dc.GetConnection());
                     try
                     {
-                        cmd.Parameters.AddWithValue("@temtk", UsernameTxb.Text);
+                        cmd.Parameters.AddWithValue("@tentk", UsernameTxb.Text);
                         magv = cmd.ExecuteScalar().ToString();  
                     }catch(Exception ex)
                     {

@@ -69,4 +69,4 @@ VALUES (N'Trần Văn B', '2006-05-06', '2023-08-15', N'Số 12, đường Nguy�
 (N'Nguyễn Văn J', '2007-02-02', '2023-08-15', N'Số 108, đường Cách Mạng Tháng Tám, quận 1, TP. Hồ Chí Minh', 2.0, 'L01', 'GV02'),
 (N'Phạm Thị K', '2007-03-03', '2023-08-15', N'Số 120, đường Điện Biên Phủ, quận 1, TP. Hồ Chí Minh', 1.0, 'L01', 'GV02');
 
-select Top 1 * from GiaoVien Order By MaGV DSC
+select Top 1 * from GiaoVien Order By MaGV DESC

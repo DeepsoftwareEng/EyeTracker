@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace EyeTracker.MVVM.View
 {
@@ -27,10 +28,13 @@ namespace EyeTracker.MVVM.View
         private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
         private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
         private static string dataFolderPath = System.IO.Path.Combine(fix, "UserData");
+        private static string LogFolderPath = System.IO.Path.Combine(fix, "Log");
+        private string filepath;
         public StudentManageUI(string maGV)
         {
             InitializeComponent();
             this.maGV = maGV;
+            filepath = LogFolderPath + $"{maGV}.txt";
             LoadStudent();
             LoadFunction();
         }
@@ -92,6 +96,10 @@ namespace EyeTracker.MVVM.View
                     NullWrpImage();
                     StudentInfo.StudentImg.Source = null;
                     File.Delete(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png");
+                    using (StreamWriter sw = File.AppendText(filepath))
+                    {
+                        sw.WriteLine($"{maGV} - {DateTime.Now}: Xoa hoc sinh: {choosenStudent.MaHocSinh}");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -139,7 +147,7 @@ namespace EyeTracker.MVVM.View
                 cmd.Parameters.AddWithValue("@magv", StudentChange.TeacherTxb.Text);
                 cmd.Parameters.AddWithValue("@mahocsinh", choosenStudent.MaHocSinh);
                 cmd.ExecuteNonQuery();
-                if(choosenImage != dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png" && choosenImage != string.Empty)
+                if(choosenImage != null && choosenImage != dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png" )
                 {
                     StudentInfo.StudentImg.Source = null;
                     StudentChange.StudentImg.Source = null;
@@ -154,6 +162,10 @@ namespace EyeTracker.MVVM.View
                     bmp.EndInit();
                     StudentInfo.StudentImg.Source = bmp;
                     fs.Close();
+                }
+                using (StreamWriter sw = File.AppendText(filepath))
+                {
+                    sw.WriteLine($"{maGV} - {DateTime.Now}: Sua hoc sinh: {choosenStudent.MaHocSinh}");
                 }
                 dc.GetConnection().Close();
             }
@@ -176,10 +188,56 @@ namespace EyeTracker.MVVM.View
             StudentChange.Visibility = Visibility.Visible;
             StudentChange.SaveBtn.MouseLeftButtonDown += AddSaveBtn;
         }
-
+        private int MaxID()
+        {
+            int t;
+            string query = "Select Max(MaHocSinh) from HocSinh";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            try
+            {
+                t = Int32.Parse(cmd.ExecuteScalar().ToString());
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+            dc.GetConnection().Close();
+            return t;
+        }
         private void AddSaveBtn(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            int t = MaxID();
+            DateOnly date = DateOnly.Parse(StudentChange.DateTxb.Text);
+            DateOnly date2 = DateOnly.Parse(StudentChange.EnrollTxb.Text);
+            string query = "insert into HocSinh value(@hoten,@ngaysinh,@namnhaphoc,@diachi,@docanthi,@malop,@magv)";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            try
+            {
+                cmd.Parameters.AddWithValue("@hoten",StudentChange.NameTxb.Text);
+                cmd.Parameters.AddWithValue("@ngaysinh",date.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@namnhaphoc",date2.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@diachi",StudentChange.AddressTxb.Text);
+                cmd.Parameters.AddWithValue("@docanthi",StudentChange.MyopiaTxb.Text);
+                cmd.Parameters.AddWithValue("@malop",StudentChange.ClassTxb.Text);
+                cmd.Parameters.AddWithValue("@magv",StudentChange.TeacherTxb.Text);
+                cmd.ExecuteNonQuery();
+                if(choosenImage != null)
+                {
+                    File.Copy(choosenImage, dataFolderPath + $"\\StudentImage\\{t + 1}.png");
+                }
+                using (StreamWriter sw = File.AppendText(filepath))
+                {
+                    sw.WriteLine($"{maGV} - {DateTime.Now}: Them hoc sinh: {t+1}");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dc.GetConnection().Close();
         }
 
         private StudentTab LoadTab(int id, string name)

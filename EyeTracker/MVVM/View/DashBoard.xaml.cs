@@ -114,7 +114,7 @@ namespace EyeTracker.MVVM.View
             foreach(var i in result)
             {
                 ColumnSeries temp = new ColumnSeries();
-                temp.Title = $"{i}";
+                temp.Title = $"{i} độ";
                 temp.ColumnPadding = 0.5;
                 temp.Values = new ChartValues<double> { CountValue(i) };
                 SeriesCollection.Add(temp);

@@ -20,9 +20,12 @@ namespace EyeTracker.MVVM.View
     /// </summary>
     public partial class AdminUI : Page
     {
-        public AdminUI()
+        private readonly string tentk;
+
+        public AdminUI(string tentk)
         {
             InitializeComponent();
+            this.tentk = tentk;
         }
         private void LogoutImg_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -30,7 +33,7 @@ namespace EyeTracker.MVVM.View
         }
         private void QuanLyGiaoVien_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ManageContentChange.NavigationService.Navigate(new TeacherManageUI());
+            ManageContentChange.NavigationService.Navigate(new TeacherManageUI(tentk));
         }
     }
 }

@@ -52,8 +52,12 @@
 
   <ItemGroup>
     <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="Log\" />
     <Folder Include="SQL\" />
-    <Folder Include="UserData\StudentImage\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="3.png" />
   </ItemGroup>
 
   <ItemGroup>

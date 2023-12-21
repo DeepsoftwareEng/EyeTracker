@@ -27,14 +27,19 @@ namespace EyeTracker.MVVM.View
         private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
         private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
         private static string dataFolderPath = System.IO.Path.Combine(fix, "UserData");
+        private static string LogFolderPath = System.IO.Path.Combine(fix, "Log");
         private string choosenImage;
         private string choosenTeacherId;
+        private string filepath;
+        private readonly string tentk;
 
-        public TeacherManageUI()
+        public TeacherManageUI(string tentk)
         {
             InitializeComponent();
             Loadfunction();
             LoadData();
+            this.tentk = tentk;
+            filepath = LogFolderPath + $"\\admin-{tentk}.txt";
         }
         private void Loadfunction()
         {
@@ -136,10 +141,72 @@ namespace EyeTracker.MVVM.View
                 fs.Close();
             }
         }
-
+        private int DeletedTeacherClass()
+        {
+            string query = "Update Lop set Magv = GV00 where magv = @magv";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            try
+            {
+                cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+            dc.GetConnection().Close();
+            return 1;
+        }
+        private int DeletedTeacherStudent()
+        {
+            string query = "Update HocSinh set Magv = GV00 where magv = @magv";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            try
+            {
+                cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
+                cmd.ExecuteNonQuery();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+            dc.GetConnection().Close();
+            return 1;
+        }
         private void DeleteTeacher(object sender, MouseButtonEventArgs e)
         {
-
+            if (DeletedTeacherStudent() == 1 && DeletedTeacherClass()==1)
+            {
+                string query = "Delete from GiaoVien where Magv = @magv";
+                if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                    dc.GetConnection().Open();
+                cmd = new SqlCommand(query, dc.GetConnection());
+                try
+                {
+                    cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
+                    cmd.ExecuteNonQuery();
+                    File.Delete($"\\TeacherImage\\{choosenTeacherId}.png");
+                    using (StreamWriter sw = File.AppendText(filepath))
+                    {
+                        sw.WriteLine($"{tentk} - {DateTime.Now}: Xoa giao vien: {choosenTeacherId}");
+                    }
+                    MessageBox.Show("Thanh cong");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dc.GetConnection().Close();
+            }
+            else
+            {
+                MessageBox.Show("khong the chuyen hoc sinh sang giao vien khac");
+            }
         }
 
         private void EditTeacher(object sender, MouseButtonEventArgs e)
@@ -194,12 +261,34 @@ namespace EyeTracker.MVVM.View
             try
             {
                 cmd.ExecuteNonQuery();
+                if(choosenImage != null && choosenImage != dataFolderPath+$"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png")
+                {
+                    TeacherChange.TeacherImg.Source = null;
+                    NullWrpImage((sender as Border).Tag.ToString());
+                    File.Delete($"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png");
+                    File.Copy(choosenImage, $"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png");
+                    Stream fs = File.Open(dataFolderPath + $"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png", FileMode.Open);
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.BeginInit();
+                    bmp.CacheOption = BitmapCacheOption.OnLoad;
+                    bmp.StreamSource = fs;
+                    bmp.EndInit();
+                    TeacherInfo.TeacherImg.Source = bmp;
+                    fs.Close();
+                }
+                using (StreamWriter sw = File.AppendText(filepath))
+                {
+                    sw.WriteLine($"{tentk} - {DateTime.Now}: Sua giao vien: {choosenTeacherId}");
+                }
                 MessageBox.Show("Thanh cong");
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
             dc.GetConnection().Close();
+            TeacherChange.RemoveData();
+            TeacherChange.IsEnabled = false;
+            TeacherChange.Visibility = Visibility.Hidden;
         }
 
         private void AddTeacher(object sender, MouseButtonEventArgs e)
@@ -242,12 +331,24 @@ namespace EyeTracker.MVVM.View
             try
             {
                 cmd.ExecuteNonQuery();
+                using (StreamWriter sw = File.AppendText(filepath))
+                {
+                    sw.WriteLine($"{tentk} - {DateTime.Now}: Them giao vien: {"GV" + NewId}");
+                }
                 MessageBox.Show("Thanh cong");
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dc.GetConnection().Close();
+        }
+        private void NullWrpImage(string id)
+        {
+            foreach(var i in TeacherWrp.Children)
+            {
+                if (i is TeacherTab temp && temp.Tag.ToString() == id)
+                    temp.RemoveImage();
+            }
         }
     }
 }

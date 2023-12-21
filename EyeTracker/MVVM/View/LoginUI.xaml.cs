@@ -1,8 +1,11 @@
 ﻿using EyeTracker.MVVM.Model;
 using Microsoft.Data.SqlClient;
 using System;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 
 
 namespace EyeTracker.MVVM.View
@@ -14,6 +17,10 @@ namespace EyeTracker.MVVM.View
     {
         private DataConnection dc = new DataConnection();
         private SqlCommand cmd;
+        private static string binFolderPath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
+        private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
+        private static string dataFolderPath = System.IO.Path.Combine(fix, "Log");
         public LoginUI()
         {
             InitializeComponent();
@@ -53,7 +60,18 @@ namespace EyeTracker.MVVM.View
                 }
                 if(role.ToUpper() == "ADMIN")
                 {
-                    this.NavigationService.Navigate(new AdminUI());
+                    string filepath = $"{dataFolderPath}\\admin-{UsernameTxb.Text}.txt";
+                    if (!File.Exists(filepath))
+                    {
+                        using (FileStream fs = File.Create(filepath))
+                        {
+                            // Dữ liệu bạn muốn ghi vào tệp
+                            string data = $"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin";
+                            byte[] info = new UTF8Encoding(true).GetBytes(data);
+                            fs.Write(info, 0, info.Length);
+                        }
+                    }
+                    this.NavigationService.Navigate(new AdminUI(UsernameTxb.Text));
                 }
                 else
                 {
@@ -66,6 +84,17 @@ namespace EyeTracker.MVVM.View
                     }catch(Exception ex)
                     {
                         MessageBox.Show(ex.Message);
+                    }
+                    string filepath = $"{dataFolderPath}\\{magv}.txt";
+                    if (!File.Exists(filepath))
+                    {
+                        using (FileStream fs = File.Create(filepath))
+                        {
+                            // Dữ liệu bạn muốn ghi vào tệp
+                            string data = $"{magv}-{DateTime.Now}: Login as Teacher";
+                            byte[] info = new UTF8Encoding(true).GetBytes(data);
+                            fs.Write(info, 0, info.Length);
+                        }
                     }
                     this.NavigationService.Navigate(new MainMenuUI(magv));
                 }

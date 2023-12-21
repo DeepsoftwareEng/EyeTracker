@@ -47,15 +47,23 @@ INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
 VALUES ('admin', '123456', 'admin');
 INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
 VALUES ('gv1', '1234', 'Teacher');
+INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
+VALUES ('gv0', '', 'Teacher');
+insert into TaiKhoan values('gv2','pass2','Teacher'),
+						   ('gv3','pass3','Teacher')
 -- Insert giáo viên
 INSERT INTO GiaoVien (MaGV, TenGV, NgaySinh, TenTaiKhoan)
 VALUES ('GV01', N'Nguyễn Văn A', '1980-03-08', 'admin');
 INSERT INTO GiaoVien (MaGV, TenGV, NgaySinh, TenTaiKhoan)
-VALUES ('GV02', N'Nguyễn Văn B', '1980-03-08', 'gv1');
+VALUES ('GV00', N'', '', 'gv0');
+insert into GiaoVien values ('GV02',N'Nguyễn Quang Hưng','2002-7-25','gv1' ),
+							('GV03',N'Nguyễn Phúc Hưng','2002-7-25','gv2' ),
+						    ('GV04',N'Phạm Hoàng Tiến','2002-1-1','gv3' )
 -- Insert lớp
 INSERT INTO Lop (MaLop, TenLop, GVCN)
 VALUES ('L01', N'Lớp 10A1', 'GV02');
-
+insert into Lop values ('L02',N'Lớp 10A2','GV03'),
+				('L03',N'Lớp 10A3','GV04')
 -- Insert học sinh
 INSERT INTO HocSinh (HoTen, NgaySinh, NamNhapHoc, DiaChi, DoCanThi, MaLop, MaGV)
 VALUES (N'Trần Văn B', '2006-05-06', '2023-08-15', N'Số 12, đường Nguyễn Trãi, quận 1, TP. Hồ Chí Minh', 8.0, 'L01', 'GV02'),
@@ -69,4 +77,29 @@ VALUES (N'Trần Văn B', '2006-05-06', '2023-08-15', N'Số 12, đường Nguy�
 (N'Nguyễn Văn J', '2007-02-02', '2023-08-15', N'Số 108, đường Cách Mạng Tháng Tám, quận 1, TP. Hồ Chí Minh', 2.0, 'L01', 'GV02'),
 (N'Phạm Thị K', '2007-03-03', '2023-08-15', N'Số 120, đường Điện Biên Phủ, quận 1, TP. Hồ Chí Minh', 1.0, 'L01', 'GV02');
 
+INSERT INTO HocSinh (HoTen, NgaySinh, NamNhapHoc, DiaChi, DoCanThi, MaLop, MaGV)
+VALUES (N'Trần Văn A', '2003-05-06', '2023-08-15', N'Số 12, đường Nguyễn Trãi, quận 1, TP. Hồ Chí Minh',0.75, 'L02', 'GV03'),
+(N'Lê Thị B', '2003-07-07', '2023-08-15', N'Số 24, đường Lê Lợi, quận 1, TP. Hồ Chí Minh', 4, 'L02', 'GV03'),
+(N'Đinh Văn C', '2003-08-08', '2023-08-15', N'Số 36, đường Pasteur, quận 1, TP. Hồ Chí Minh', 3.5, 'L02', 'GV03'),
+(N'Nguyễn Thị D', '2003-09-09', '2023-08-15', N'Số 48, đường Trần Hưng Đạo, quận 1, TP. Hồ Chí Minh', 2, 'L02', 'GV03'),
+(N'Phạm Văn E', '2003-10-10', '2023-08-15', N'Số 60, đường Võ Văn Tần, quận 1, TP. Hồ Chí Minh', 1.75, 'L02', 'GV03'),
+(N'Trần Thị F', '2003-11-11', '2023-08-15', N'Số 72, đường Nguyễn Đình Chiểu, quận 1, TP. Hồ Chí Minh', 3.25, 'L02', 'GV03'),
+(N'Lê Văn G', '2003-12-12', '2023-08-15', N'Số 84, đường Hai Bà Trưng, quận 1, TP. Hồ Chí Minh', 3, 'L02', 'GV03'),
+(N'Đinh Thị H', '2003-01-01', '2023-08-15', N'Số 96, đường Nguyễn Huệ, quận 1, TP. Hồ Chí Minh', 2.75, 'L02', 'GV03'),
+(N'Nguyễn Văn I', '2003-02-02', '2023-08-15', N'Số 108, đường Cách Mạng Tháng Tám, quận 1, TP. Hồ Chí Minh', 2.25, 'L02', 'GV03'),
+(N'Phạm Thị J', '2003-03-03', '2023-08-15', N'Số 120, đường Điện Biên Phủ, quận 1, TP. Hồ Chí Minh', 0, 'L02', 'GV03');
+
+INSERT INTO HocSinh (HoTen, NgaySinh, NamNhapHoc, DiaChi, DoCanThi, MaLop, MaGV)
+VALUES (N'Trần Văn Z', '2003-05-06', '2023-08-15', N'Số 12, đường Nguyễn Trãi, quận 1, TP. Hồ Chí Minh',0.75, 'L03', 'GV04'),
+(N'Lê Thị X', '2003-07-07', '2023-08-15', N'Số 24, đường Lê Lợi, quận 1, TP. Hồ Chí Minh', 4, 'L03', 'GV04'),
+(N'Đinh Văn C', '2003-08-08', '2023-08-15', N'Số 36, đường Pasteur, quận 1, TP. Hồ Chí Minh', 3.5, 'L03', 'GV04'),
+(N'Nguyễn Thị V', '2003-09-09', '2023-08-15', N'Số 48, đường Trần Hưng Đạo, quận 1, TP. Hồ Chí Minh', 2, 'L03', 'GV04'),
+(N'Phạm Văn B', '2003-10-10', '2023-08-15', N'Số 60, đường Võ Văn Tần, quận 1, TP. Hồ Chí Minh', 1.75, 'L03', 'GV04'),
+(N'Trần Thị N', '2003-11-11', '2023-08-15', N'Số 72, đường Nguyễn Đình Chiểu, quận 1, TP. Hồ Chí Minh', 3.25, 'L03', 'GV04'),
+(N'Lê Văn M', '2003-12-12', '2023-08-15', N'Số 84, đường Hai Bà Trưng, quận 1, TP. Hồ Chí Minh', 3, 'L03', 'GV04'),
+(N'Đinh Thị L', '2003-01-01', '2023-08-15', N'Số 96, đường Nguyễn Huệ, quận 1, TP. Hồ Chí Minh', 2.75, 'L03', 'GV04'),
+(N'Nguyễn Văn K', '2003-02-02', '2023-08-15', N'Số 108, đường Cách Mạng Tháng Tám, quận 1, TP. Hồ Chí Minh', 2.25, 'L03', 'GV04'),
+(N'Phạm Thị P', '2003-03-03', '2023-08-15', N'Số 120, đường Điện Biên Phủ, quận 1, TP. Hồ Chí Minh', 0, 'L03', 'GV04');
 select Top 1 * from GiaoVien Order By MaGV DESC
+select COUNT(*) from Lop
+select Max(MaHocSinh) from HocSinh

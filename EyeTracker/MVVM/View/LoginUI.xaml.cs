@@ -1,4 +1,5 @@
-﻿using EyeTracker.MVVM.Model;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using EyeTracker.MVVM.Model;
 using Microsoft.Data.SqlClient;
 using System;
 using System.IO;
@@ -63,13 +64,15 @@ namespace EyeTracker.MVVM.View
                     string filepath = $"{dataFolderPath}\\admin-{UsernameTxb.Text}.txt";
                     if (!File.Exists(filepath))
                     {
-                        using (FileStream fs = File.Create(filepath))
-                        {
-                            // Dữ liệu bạn muốn ghi vào tệp
-                            string data = $"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin";
-                            byte[] info = new UTF8Encoding(true).GetBytes(data);
-                            fs.Write(info, 0, info.Length);
-                        }
+                        File.Create(filepath) ;
+                        StreamWriter writer = new StreamWriter(filepath);
+                        writer.Write($"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin");
+                        writer.Close();
+                    }
+                    else
+                    {
+                        string content = $"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin";
+                        File.AppendAllText(filepath, content);
                     }
                     this.NavigationService.Navigate(new AdminUI(UsernameTxb.Text));
                 }
@@ -88,13 +91,15 @@ namespace EyeTracker.MVVM.View
                     string filepath = $"{dataFolderPath}\\{magv}.txt";
                     if (!File.Exists(filepath))
                     {
-                        using (FileStream fs = File.Create(filepath))
-                        {
-                            // Dữ liệu bạn muốn ghi vào tệp
-                            string data = $"{magv}-{DateTime.Now}: Login as Teacher";
-                            byte[] info = new UTF8Encoding(true).GetBytes(data);
-                            fs.Write(info, 0, info.Length);
-                        }
+                        File.Create(filepath) ;
+                        StreamWriter writer = new StreamWriter(filepath);
+                        writer.Write($"{magv}-{DateTime.Now}: Login as Teacher");
+                        writer.Close();
+                    }
+                    else
+                    {
+                        string content = $"{magv}-{DateTime.Now}: Login as Teacher";
+                        File.AppendAllText(filepath, content);
                     }
                     this.NavigationService.Navigate(new MainMenuUI(magv));
                 }

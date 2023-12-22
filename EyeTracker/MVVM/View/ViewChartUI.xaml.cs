@@ -5,7 +5,9 @@ using LiveCharts.Wpf;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,10 +25,16 @@ namespace EyeTracker.MVVM.View
         private SqlCommand cmd;
         private List<Lop> classes = new List<Lop>();
         private List<HocSinhChart> students = new List<HocSinhChart>();
+        private static string binFolderPath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
+        private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
+        private static string LogFolderPath = System.IO.Path.Combine(fix, "Log");
+        private string filepath;
         public ViewChartUI(string magv)
         {
             InitializeComponent();
             Magv = magv;
+            filepath = LogFolderPath + $"{magv}.txt";
             AddData();
             DataContext = this;
         }
@@ -83,6 +91,8 @@ namespace EyeTracker.MVVM.View
             MypoiaChart.IsEnabled = false;
             MypoiaChart.IsEnabled = true;
             MypoiaChart.Series = seriesViews;
+            string content = $"{Magv}-{DateTime.Now}: View Chart of {malop}";
+            File.AppendAllText(filepath, content);
         }
 
         private void GetStudent(string ClassCode)

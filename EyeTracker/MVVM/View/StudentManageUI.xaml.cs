@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -96,10 +97,8 @@ namespace EyeTracker.MVVM.View
                     NullWrpImage();
                     StudentInfo.StudentImg.Source = null;
                     File.Delete(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png");
-                    using (StreamWriter sw = File.AppendText(filepath))
-                    {
-                        sw.WriteLine($"{maGV} - {DateTime.Now}: Xoa hoc sinh: {choosenStudent.MaHocSinh}");
-                    }
+                    string content = $"{maGV} - {DateTime.Now}: Xoa hoc sinh: {choosenStudent.MaHocSinh}";
+                    File.AppendAllText(filepath, content);
                 }
                 catch (Exception ex)
                 {
@@ -163,10 +162,8 @@ namespace EyeTracker.MVVM.View
                     StudentInfo.StudentImg.Source = bmp;
                     fs.Close();
                 }
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.WriteLine($"{maGV} - {DateTime.Now}: Sua hoc sinh: {choosenStudent.MaHocSinh}");
-                }
+                string content = $"{maGV} - {DateTime.Now}: Sua hoc sinh: {choosenStudent.MaHocSinh}";
+                File.AppendAllText(filepath, content);
                 dc.GetConnection().Close();
             }
             catch(Exception ex) 
@@ -228,10 +225,8 @@ namespace EyeTracker.MVVM.View
                 {
                     File.Copy(choosenImage, dataFolderPath + $"\\StudentImage\\{t + 1}.png");
                 }
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.WriteLine($"{maGV} - {DateTime.Now}: Them hoc sinh: {t+1}");
-                }
+                string content = $"{maGV} - {DateTime.Now}: Them hoc sinh: {t + 1}";
+                File.AppendAllText(filepath, content);
             }
             catch(Exception ex)
             {

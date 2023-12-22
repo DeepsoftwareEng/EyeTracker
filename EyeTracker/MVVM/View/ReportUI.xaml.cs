@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -119,9 +120,12 @@ namespace EyeTracker.MVVM.View
                         workbook.SaveAs(savefile.FileName);
                         MessageBox.Show("Done", "Message", MessageBoxButton.OK);
                         workbook.Dispose();
-                        using (StreamWriter sw = File.AppendText(filepath))
+                        using (FileStream fs = File.OpenWrite(filepath))
                         {
-                            sw.WriteLine($"{magv} - {DateTime.Now}: Xuat danh sach {ReportType}");
+                            // Dữ liệu bạn muốn ghi vào tệp
+                            string data = $"{magv} - {DateTime.Now}: Xuat danh sach {ReportType}";
+                            byte[] info = new UTF8Encoding(true).GetBytes(data);
+                            fs.Write(info, 0, info.Length);
                         }
                     }
                     catch (Exception ex)
@@ -280,10 +284,8 @@ namespace EyeTracker.MVVM.View
             {
                 ReportDtg.Items.Add(new {MaHocSinh = i.MaHocSinh, HoTen = i.HoTen, NgaySinh = i.NgaySinh.ToString(), NamNhapHoc = i.NamNhapHoc.ToString(), DiaChi = i.DiaChi, DoCanThi = i.DoCanThi, Lop = lops.Where(c => c.MaLop == i.MaLop).Select(c=> c.TenLop).FirstOrDefault()});
             }
-            using (StreamWriter sw = File.AppendText(filepath))
-            {
-                sw.WriteLine($"{magv} - {DateTime.Now}: xem thong ke hoc sinh");
-            }
+            string content = $"{magv} - {DateTime.Now}: xem thong ke hoc sinh";
+            File.AppendAllText(filepath, content);
         }
 
         private void LoadData()

@@ -13,6 +13,8 @@ using LiveCharts.Defaults;
 using System.Xml.Serialization;
 using System.Collections;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text;
 
 namespace EyeTracker.MVVM.View
 {
@@ -27,16 +29,24 @@ namespace EyeTracker.MVVM.View
         public SeriesCollection SeriesCollection= new SeriesCollection();
         public string[] Labels { get; set; }
         public Func<double, string> Values { get; set; }
-        public DashBoard()
+        private static string binFolderPath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
+        private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
+        private static string LogFolderPath = System.IO.Path.Combine(fix, "Log");
+        private string filepath;
+        public DashBoard(string magv)
         {
             InitializeComponent();
             GetStudent();
             Values = value => value.ToString("N");
+            filepath = LogFolderPath + $"{magv}.txt";
             setLabel();
             setValue();
             DataContext = this;
             DashboardChart.Series = SeriesCollection;
             setCount();
+            string content = $"{magv}-{DateTime.Now}: View Dashboard";
+            File.AppendAllText(filepath, content);
         }
         private void setCount()
         {

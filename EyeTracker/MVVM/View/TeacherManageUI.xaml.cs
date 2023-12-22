@@ -191,10 +191,8 @@ namespace EyeTracker.MVVM.View
                     cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
                     cmd.ExecuteNonQuery();
                     File.Delete($"\\TeacherImage\\{choosenTeacherId}.png");
-                    using (StreamWriter sw = File.AppendText(filepath))
-                    {
-                        sw.WriteLine($"{tentk} - {DateTime.Now}: Xoa giao vien: {choosenTeacherId}");
-                    }
+                    string content = $"{tentk} - {DateTime.Now}: Xoa giao vien: {choosenTeacherId}";
+                    File.AppendAllText(filepath, content);
                     MessageBox.Show("Thanh cong");
                 }
                 catch (Exception ex)
@@ -276,10 +274,8 @@ namespace EyeTracker.MVVM.View
                     TeacherInfo.TeacherImg.Source = bmp;
                     fs.Close();
                 }
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.WriteLine($"{tentk} - {DateTime.Now}: Sua giao vien: {choosenTeacherId}");
-                }
+                string content = $"{tentk} - {DateTime.Now}: Sua giao vien: {choosenTeacherId}";
+                File.AppendAllText(filepath, content);
                 MessageBox.Show("Thanh cong");
             }catch(Exception ex)
             {
@@ -331,10 +327,8 @@ namespace EyeTracker.MVVM.View
             try
             {
                 cmd.ExecuteNonQuery();
-                using (StreamWriter sw = File.AppendText(filepath))
-                {
-                    sw.WriteLine($"{tentk} - {DateTime.Now}: Them giao vien: {"GV" + NewId}");
-                }
+                string content = $"{tentk} - {DateTime.Now}: Them giao vien: {"GV" + NewId}";
+                File.AppendAllText(filepath, content);
                 MessageBox.Show("Thanh cong");
             }catch(Exception ex)
             {

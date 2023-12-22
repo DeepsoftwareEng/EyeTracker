@@ -39,7 +39,7 @@ namespace EyeTracker.MVVM.View
             InitializeComponent();
             GetStudent();
             Values = value => value.ToString("N");
-            filepath = LogFolderPath + $"{magv}.txt";
+            filepath = LogFolderPath + $"\\{magv}.txt";
             setLabel();
             setValue();
             DataContext = this;

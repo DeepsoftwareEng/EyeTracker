@@ -34,7 +34,7 @@ namespace EyeTracker.MVVM.View
         {
             InitializeComponent();
             Magv = magv;
-            filepath = LogFolderPath + $"{magv}.txt";
+            filepath = LogFolderPath + $"\\{magv}.txt";
             AddData();
             DataContext = this;
         }

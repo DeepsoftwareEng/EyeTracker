@@ -35,7 +35,7 @@ namespace EyeTracker.MVVM.View
         {
             InitializeComponent();
             this.maGV = maGV;
-            filepath = LogFolderPath + $"{maGV}.txt";
+            filepath = LogFolderPath + $"\\{maGV}.txt";
             LoadStudent();
             LoadFunction();
         }

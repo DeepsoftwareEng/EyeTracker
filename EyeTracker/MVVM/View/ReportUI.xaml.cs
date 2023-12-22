@@ -37,7 +37,7 @@ namespace EyeTracker.MVVM.View
         {
             InitializeComponent();
             this.magv = magv;
-            filepath = LogFolderPath + $"{magv}.txt";
+            filepath = LogFolderPath + $"\\{magv}.txt";
             LoadData();
             LoadFunction();
         }
@@ -89,7 +89,7 @@ namespace EyeTracker.MVVM.View
                         PropertyInfo[] p;
                         IXLCell cell;
                         cell = sheet1.Cell(rowWrite, 1);
-                        cell.Value = "Attandance workers list";
+                        cell.Value = $"Báo cáo {ReportType}";
                         cell.Style.Font.Bold = true;
                         cell.Style.Font.FontSize = 14;
                         rowWrite++;

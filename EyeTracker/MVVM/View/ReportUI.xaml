@@ -22,7 +22,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Học sinh"
                     x:Name="StudentDetailBtn"
@@ -35,6 +36,12 @@
                     Content="Lớp"
                     x:Name="ClassDetail"
                     Background="LightGray" Margin="5,4,5,5"/>
+            <Border Grid.Column="4" Margin="17,0,18,0"
+                    x:Name="ExportBtn">
+                <Image 
+                   Source="\Resource\export-excel.png" >
+                </Image>
+            </Border>
         </Grid>
 
     </Grid>

@@ -14,6 +14,7 @@
     <None Remove="Resource\backicon.png" />
     <None Remove="Resource\delicon.png" />
     <None Remove="Resource\editicon.png" />
+    <None Remove="Resource\export-excel.png" />
     <None Remove="Resource\Logo.png" />
     <None Remove="Resource\LogoutIcon.png" />
     <None Remove="Resource\saveicon.png" />
@@ -37,6 +38,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\editicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\export-excel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\Logo.png">

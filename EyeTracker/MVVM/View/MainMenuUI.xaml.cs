@@ -52,5 +52,10 @@ namespace EyeTracker.MVVM.View
         {
             ManageContentChange.NavigationService.Navigate(new DashBoard());
         }
+
+        private void StudentReportBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ManageContentChange.NavigationService.Navigate(new ReportUI(MaGV));
+        }
     }
 }

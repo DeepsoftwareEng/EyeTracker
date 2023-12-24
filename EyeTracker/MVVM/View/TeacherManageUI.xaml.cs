@@ -300,6 +300,7 @@ namespace EyeTracker.MVVM.View
             string query = "select Top 1 * from GiaoVien Order By MaGV DESC";
             if(dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
             try
             {
                 t = cmd.ExecuteScalar().ToString().Substring(2);

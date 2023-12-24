@@ -191,6 +191,7 @@ namespace EyeTracker.MVVM.View
             string query = "Select Max(MaHocSinh) from HocSinh";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
             try
             {
                 t = Int32.Parse(cmd.ExecuteScalar().ToString());

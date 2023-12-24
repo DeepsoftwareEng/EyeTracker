@@ -51,7 +51,7 @@ namespace EyeTracker.MVVM.View
         }
         private void LoadData()
         {
-            string query = "Select * from GiaoVien";
+            string query = "Select * from GiaoVien where MaGv != 'GV00'";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
@@ -241,7 +241,7 @@ namespace EyeTracker.MVVM.View
         }
         private void SaveEditTeacher(object sender, MouseButtonEventArgs e)
         {
-            DateOnly dob = DateOnly.Parse(TeacherChange.DateTxb.Text);
+            DateOnly dob = DateOnly.ParseExact(TeacherChange.DateTxb.Text, "dd/MM/yyyy", null);
             string query = "Update GiaoVien set TenGV =@tengv, NgaySinh = @ngaysinh where MaGV= @magv";
             List<Lop> ds = new();
             foreach (var i in TeacherChange.ClassLvw.Items)
@@ -316,7 +316,7 @@ namespace EyeTracker.MVVM.View
         }
         private void SaveNewTeacher(object sender, MouseButtonEventArgs e)
         {
-            DateOnly date = DateOnly.Parse(TeacherChange.DateTxb.Text);
+            DateOnly date = DateOnly.ParseExact(TeacherChange.DateTxb.Text, "dd/MM/yyyy", null);
             string query = "insert into GiaoVien values(@magv,@tengv,@ngaysinh,@tentk)";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();

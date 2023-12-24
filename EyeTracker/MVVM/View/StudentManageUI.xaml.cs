@@ -129,8 +129,8 @@ namespace EyeTracker.MVVM.View
 
         private void EditSaveBtn(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            DateOnly dob = DateOnly.Parse(StudentChange.DateTxb.Text);
-            DateOnly enroll = DateOnly.Parse(StudentChange.EnrollTxb.Text);
+            DateOnly dob = DateOnly.ParseExact(StudentChange.DateTxb.Text, "dd/MM/yyyy", null);
+            DateOnly enroll = DateOnly.ParseExact(StudentChange.EnrollTxb.Text, "dd/MM/yyyy", null);
             string querry = "Update HocSinh set HoTen = @hoten, NgaySinh = @ngaysinh, NamNhapHoc = @namnhaphoc, @DiaChi=@diachi, MaLop =@malop, @MaGV = @magv where MaHocSinh = @mahocsinh";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
@@ -206,8 +206,8 @@ namespace EyeTracker.MVVM.View
         private void AddSaveBtn(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             int t = MaxID();
-            DateOnly date = DateOnly.Parse(StudentChange.DateTxb.Text);
-            DateOnly date2 = DateOnly.Parse(StudentChange.EnrollTxb.Text);
+            DateOnly date = DateOnly.ParseExact(StudentChange.DateTxb.Text,"dd/MM/yyyy",null);
+            DateOnly date2 = DateOnly.ParseExact(StudentChange.EnrollTxb.Text, "dd/MM/yyyy", null);
             string query = "insert into HocSinh value(@hoten,@ngaysinh,@namnhaphoc,@diachi,@docanthi,@malop,@magv)";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();

@@ -63,14 +63,20 @@
                 Width="112"  
                 Height="75"/>
         </ScrollViewer>
-        <Button Grid.Row="3"
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1"
                 Content="Thêm"
-                x:Name="AddClassBtn" Margin="7,9,63,10"
+                x:Name="AddClassBtn" Margin="4,4,4,4" 
             />
-        <Button Grid.Row="3"
-        Content="Xóa"
-        x:Name="DelClassBtn" Margin="66,9,4,10"
-    />
+            <Button  Content="Xóa"
+                     x:Name="DelClassBtn" 
+                     Margin="4,4,4,4" 
+                     />
+        </Grid>
         <TextBlock Grid.Row="4"
                    Text="  Chọn 1 lớp:"
                    VerticalAlignment="Center"

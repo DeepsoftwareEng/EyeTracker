@@ -38,6 +38,7 @@ namespace EyeTracker.CustomComponents
             NameTxb.Text = teacher.TenGV;
             DateTxb.Text = teacher.NgaySinh.ToString("dd/MM/yyyy");
             AccountTxb.Text = teacher.TenTaiKhoan.ToString();
+            
             foreach(var i in lopcn)
             {
                 ClassLvw.Items.Add(i.TenLop);

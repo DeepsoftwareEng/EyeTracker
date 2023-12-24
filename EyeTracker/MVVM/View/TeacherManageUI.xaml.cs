@@ -62,7 +62,7 @@ namespace EyeTracker.MVVM.View
                 t.MaGV = reader.GetString(0);
                 t.TenGV = reader.GetString(1);
                 t.NgaySinh = DateOnly.FromDateTime(reader.GetDateTime(2));
-                t.TenGV = reader.GetString(3);
+                t.TenTaiKhoan = reader.GetString(3);
                 TeacherWrp.Children.Add(teacherTabs(t));
                 giaoViens.Add(t);
             }
@@ -75,8 +75,8 @@ namespace EyeTracker.MVVM.View
             while (reader.Read())
             {
                 Lop t = new();
-                t.TenLop = reader.GetString(0);
-                t.MaGV = reader.GetString(1);
+                t.MaLop = reader.GetString(0);
+                t.TenLop = reader.GetString(1);
                 t.MaGV = reader.GetString(2);
                 lops.Add(t);
             }
@@ -285,6 +285,9 @@ namespace EyeTracker.MVVM.View
             TeacherChange.RemoveData();
             TeacherChange.IsEnabled = false;
             TeacherChange.Visibility = Visibility.Hidden;
+            TeacherWrp.Children.Clear();
+            giaoViens.Clear();
+            LoadData();
         }
 
         private void AddTeacher(object sender, MouseButtonEventArgs e)
@@ -316,7 +319,7 @@ namespace EyeTracker.MVVM.View
         }
         private void SaveNewTeacher(object sender, MouseButtonEventArgs e)
         {
-            DateOnly date = DateOnly.ParseExact(TeacherChange.DateTxb.Text, "dd/MM/yyyy", null);
+            DateOnly date = DateOnly.ParseExact(TeacherChange.DateTxb.Text.ToString(), "dd/MM/yyyy", null);
             string query = "insert into GiaoVien values(@magv,@tengv,@ngaysinh,@tentk)";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
@@ -335,7 +338,13 @@ namespace EyeTracker.MVVM.View
             {
                 MessageBox.Show(ex.Message);
             }
+            TeacherWrp.Children.Clear();
+            giaoViens.Clear();
+            LoadData();
             dc.GetConnection().Close();
+            TeacherChange.RemoveData();
+            TeacherChange.IsEnabled = false;
+            TeacherChange.Visibility = Visibility.Hidden;
         }
         private void NullWrpImage(string id)
         {

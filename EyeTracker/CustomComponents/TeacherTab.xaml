@@ -23,7 +23,7 @@
             Grid.ColumnSpan="3" 
             Background="LightGray" 
             CornerRadius="8"/>
-                <Image x:Name="TeacherImg"/>
+                <Image x:Name="TeacherImg" Stretch="Uniform"/>
                 <TextBlock Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"

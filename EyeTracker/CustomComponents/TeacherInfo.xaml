@@ -20,8 +20,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1 " Margin="32,6,32,4">
-            <Image Stretch="UniformToFill" x:Name="TeacherImg"/>
+        <Border BorderBrush="Black" BorderThickness="1 " Margin="32,6,41,21">
+            <Image Stretch="Uniform" x:Name="TeacherImg"/>
         </Border>
         <TextBlock Grid.Row="1"
                Text="  Ngày sinh: "

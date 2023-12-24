@@ -29,7 +29,8 @@ namespace EyeTracker.CustomComponents
         {
             NameTxb.Text = t.TenGV;
             DateTxb.Text = t.NgaySinh.ToString("dd/MM/yyyy");
-            foreach(var i in lops)
+            ClassLwv.Items.Clear();
+            foreach (var i in lops)
             {
                 ClassLwv.Items.Add(i.TenLop);
             }

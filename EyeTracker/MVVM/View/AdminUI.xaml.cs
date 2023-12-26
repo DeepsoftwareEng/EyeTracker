@@ -38,12 +38,12 @@ namespace EyeTracker.MVVM.View
 
         private void AccountManage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new AccountManageUI());
+            ManageContentChange.NavigationService.Navigate(new AccountManageUI());
         }
 
         private void ClassManage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new ClassManageUI());
+            ManageContentChange.NavigationService.Navigate(new ClassManageUI());
         }
     }
 }

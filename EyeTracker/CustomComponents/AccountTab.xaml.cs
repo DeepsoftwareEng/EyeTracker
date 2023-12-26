@@ -20,9 +20,22 @@ namespace EyeTracker.CustomComponents
     /// </summary>
     public partial class AccountTab : UserControl
     {
-        public AccountTab()
+        public AccountTab(string role, string tentk)
         {
             InitializeComponent();
+            RoleTxb.Text = role;
+            AccountTxb.Text = tentk;
+        }
+        private void AccountTab_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(169, 169, 169));
+            mask.Background = brush;
+        }
+
+        private void AccountTab_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(211, 211, 211));
+            mask.Background = brush;
         }
     }
 }

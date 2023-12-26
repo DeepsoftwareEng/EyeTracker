@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EyeTracker.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace EyeTracker.CustomComponents
         public ChangingAccountView()
         {
             InitializeComponent();
+        }
+        public void AddData(TaiKhoan tk)
+        {
+            AccountTxb.Text = tk.TenTaiKhoan;
+            PasswordTxb.Text = tk.MatKhau;
+            RoleTxb.Text = tk.Chucvu;
+        }
+        public void ClearData()
+        {
+            AccountTxb.Text = string.Empty;
+            PasswordTxb.Text = string.Empty;
+            RoleTxb.Text = string.Empty;
         }
     }
 }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace EyeTracker.MVVM.Model
 {
-    internal class TaiKhoan
+    public class TaiKhoan
     {
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
+        public string Chucvu { get; set; }
     }
 }

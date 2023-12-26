@@ -64,7 +64,7 @@ namespace EyeTracker.MVVM.View
                     string filepath = $"{dataFolderPath}\\admin-{UsernameTxb.Text}.txt";
                     if (!File.Exists(filepath))
                     {
-                        File.Create(filepath) ;
+                        File.Create(filepath).Close() ;
                         StreamWriter writer = new StreamWriter(filepath);
                         writer.Write($"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin");
                         writer.Close();
@@ -91,7 +91,7 @@ namespace EyeTracker.MVVM.View
                     string filepath = $"{dataFolderPath}\\{magv}.txt";
                     if (!File.Exists(filepath))
                     {
-                        File.Create(filepath) ;
+                        File.Create(filepath).Close() ;
                         StreamWriter writer = new StreamWriter(filepath);
                         writer.Write($"{magv}-{DateTime.Now}: Login as Teacher");
                         writer.Close();

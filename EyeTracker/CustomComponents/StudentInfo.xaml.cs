@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EyeTracker.MVVM.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,14 +25,14 @@ namespace EyeTracker.CustomComponents
         {
             InitializeComponent();
         }
-        public void addInfo(string name, DateOnly birth, DateOnly enroll, string address, double myopia, string classes, string teacher)
+        public void addInfo(HocSinh hocsinh, string classes, string teacher)
         {
-            NameTxb.Text = name;
-            DateTxb.Text = birth.ToString("dd/MM/yyyy");
-            EnrollTxb.Text = enroll.ToString("dd/MM/yyyy");
-            AddressTxb.Text = address.ToString();
-            MyopiaTxb.Text = myopia.ToString();
-            ClassTxb.Text = classes.ToString();
+            NameTxb.Text = hocsinh.HoTen;
+            DateTxb.Text = hocsinh.NgaySinh.ToString("dd/MM/yyyy");
+            EnrollTxb.Text = hocsinh.NamNhapHoc.ToString("dd/MM/yyyy");
+            AddressTxb.Text = hocsinh.DiaChi.ToString();
+            MyopiaTxb.Text = hocsinh.DoCanThi.ToString();
+            ClassTxb.Text = classes;
             TeacherTxb.Text = teacher.ToString();
         }
         public void Clear()

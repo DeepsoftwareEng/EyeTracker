@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,8 @@ namespace EyeTracker.MVVM.View
         private DataConnection dc = new DataConnection();
         private SqlCommand cmd;
         private List<HocSinh> Students = new List<HocSinh>();
+        private List<GiaoVien> giaoviens = new();
+        private List<Lop> lops = new();
         private HocSinh choosenStudent = new HocSinh();
         private string  maGV;
         private string choosenImage;
@@ -38,6 +41,8 @@ namespace EyeTracker.MVVM.View
             filepath = LogFolderPath + $"\\{maGV}.txt";
             LoadStudent();
             LoadFunction();
+            GetTeacher();
+            GetClass();
         }
         private void LoadFunction()
         {
@@ -117,6 +122,7 @@ namespace EyeTracker.MVVM.View
             StudentChange.Visibility = Visibility.Visible;
             StudentChange.SaveBtn.MouseLeftButtonDown += EditSaveBtn;
             StudentChange.addInfo(choosenStudent);
+            StudentChange.AddCbbData(giaoviens, lops);
             Stream fs = File.Open(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png", FileMode.Open);
             BitmapImage bmp = new BitmapImage();
             bmp.BeginInit();
@@ -183,6 +189,7 @@ namespace EyeTracker.MVVM.View
         {
             StudentChange.IsEnabled = true;
             StudentChange.Visibility = Visibility.Visible;
+            StudentChange.AddCbbData(giaoviens,lops);
             StudentChange.SaveBtn.MouseLeftButtonDown += AddSaveBtn;
         }
         private int MaxID()
@@ -206,9 +213,17 @@ namespace EyeTracker.MVVM.View
         private void AddSaveBtn(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             int t = MaxID();
-            DateOnly date = DateOnly.ParseExact(StudentChange.DateTxb.Text,"dd/MM/yyyy",null);
-            DateOnly date2 = DateOnly.ParseExact(StudentChange.EnrollTxb.Text, "dd/MM/yyyy", null);
-            string query = "insert into HocSinh value(@hoten,@ngaysinh,@namnhaphoc,@diachi,@docanthi,@malop,@magv)";
+            DateOnly date, date2;
+            try
+            {
+                date = DateOnly.ParseExact(StudentChange.DateTxb.Text, "dd/MM/yyyy", null);
+                date2 = DateOnly.ParseExact(StudentChange.EnrollTxb.Text, "dd/MM/yyyy", null);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            string query = "insert into HocSinh values (@hoten,@ngaysinh,@namnhaphoc,@diachi,@docanthi,@malop,@magv)";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
@@ -219,8 +234,8 @@ namespace EyeTracker.MVVM.View
                 cmd.Parameters.AddWithValue("@namnhaphoc",date2.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@diachi",StudentChange.AddressTxb.Text);
                 cmd.Parameters.AddWithValue("@docanthi",StudentChange.MyopiaTxb.Text);
-                cmd.Parameters.AddWithValue("@malop",StudentChange.ClassTxb.Text);
-                cmd.Parameters.AddWithValue("@magv",StudentChange.TeacherTxb.Text);
+                cmd.Parameters.AddWithValue("@malop",StudentChange.ClassTxb.SelectedValue.ToString());
+                cmd.Parameters.AddWithValue("@magv",StudentChange.TeacherTxb.SelectedValue.ToString());
                 cmd.ExecuteNonQuery();
                 if(choosenImage != null)
                 {
@@ -228,11 +243,16 @@ namespace EyeTracker.MVVM.View
                 }
                 string content = $"{maGV} - {DateTime.Now}: Them hoc sinh: {t + 1}";
                 File.AppendAllText(filepath, content);
+                MessageBox.Show("Thanh cong");
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            StudentChange.Clear();
+            StudentChange.Visibility = Visibility.Hidden;
+            Students.Clear();
+            LoadStudent();
             dc.GetConnection().Close();
         }
 
@@ -261,7 +281,9 @@ namespace EyeTracker.MVVM.View
             var result = from HocSinh in Students where HocSinh.MaHocSinh == id select HocSinh;
             HocSinh temp = result.FirstOrDefault();
             choosenStudent = temp;
-            StudentInfo.addInfo(temp.HoTen, temp.NgaySinh, temp.NamNhapHoc, temp.DiaChi, temp.DoCanThi, temp.MaLop, temp.MaGV);
+            string classes = lops.Where(c => c.MaLop == temp.MaLop).Select(c => c.TenLop).FirstOrDefault();
+            string teacher = giaoviens.Where(t => t.MaGV == temp.MaGV).Select(t => t.TenGV).FirstOrDefault();
+            StudentInfo.addInfo(temp, classes, teacher);
             Stream fs = File.Open(dataFolderPath + $"\\StudentImage\\{id}.png", FileMode.Open);
             BitmapImage bmp = new BitmapImage();
             bmp.BeginInit();
@@ -271,7 +293,43 @@ namespace EyeTracker.MVVM.View
             fs.Close();
             StudentInfo.StudentImg.Source = bmp;
         }
-
+        private void GetTeacher()
+        {
+            string query = "Select * from GiaoVien where MaGv != 'GV00'";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                GiaoVien t = new();
+                t.MaGV = reader.GetString(0);
+                t.TenGV = reader.GetString(1);
+                t.NgaySinh = DateOnly.FromDateTime(reader.GetDateTime(2));
+                t.TenTaiKhoan = reader.GetString(3);
+                giaoviens.Add(t);
+            }
+            reader.Close();
+            dc.GetConnection().Close();
+        }
+        private void GetClass()
+        {
+            string query = "Select * from Lop";
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                dc.GetConnection().Open();
+            cmd = new SqlCommand(query, dc.GetConnection());
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Lop t = new();
+                t.MaLop = reader.GetString(0);
+                t.TenLop = reader.GetString(1);
+                t.MaGV = reader.GetString(2);
+                lops.Add(t);
+            }
+            reader.Close();
+            dc.GetConnection().Close();
+        }
         private void LoadStudent()
         {
             string query = "Select * from HocSinh where MaGV = @MaGV";
@@ -299,11 +357,13 @@ namespace EyeTracker.MVVM.View
                     StudentWrp.Children.Add(LoadTab(temp.MaHocSinh, temp.HoTen));
                     StudentWrp.Children.Add(space);
                 }
-                dc.GetConnection().Close();
+                reader.Close();
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
+            dc.GetConnection().Close();
         }
     }
 }

@@ -5,7 +5,6 @@
              StartupUri="MainWindow.xaml"
              >
     <Application.Resources>
-        <System:Double x:Key="WindowWidth">800</System:Double>
-        <System:Double x:Key="WindowHeight">450</System:Double>
+        
     </Application.Resources>
 </Application>

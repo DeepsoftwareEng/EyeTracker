@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EyeTracker.MVVM.View
+namespace EyeTracker.CustomComponents
 {
     /// <summary>
-    /// Interaction logic for ClassManageUI.xaml
+    /// Interaction logic for ClassInfo.xaml
     /// </summary>
-    public partial class ClassManageUI : Page
+    public partial class ClassInfo : UserControl
     {
-        public ClassManageUI()
+        public ClassInfo()
         {
             InitializeComponent();
         }

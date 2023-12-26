@@ -35,5 +35,15 @@ namespace EyeTracker.MVVM.View
         {
             ManageContentChange.NavigationService.Navigate(new TeacherManageUI(tentk));
         }
+
+        private void AccountManage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new AccountManageUI());
+        }
+
+        private void ClassManage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new ClassManageUI());
+        }
     }
 }

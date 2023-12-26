@@ -28,11 +28,6 @@ namespace EyeTracker.MVVM.View
             ManageContentChange.NavigationService.Navigate(new DashBoard(MaGV));
         }
 
-        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            ManageContentChange.NavigationService.Navigate(new ClassManageUI(MaGV));
-        }
-
         private void ManageStudentTxb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ManageContentChange.NavigationService.Navigate(new StudentManageUI(MaGV));

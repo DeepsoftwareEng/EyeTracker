@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace EyeTracker.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for ClassManageUI.xaml
+    /// Interaction logic for AccountManageUI.xaml
     /// </summary>
-    public partial class ClassManageUI : Page
+    public partial class AccountManageUI : Page
     {
-        public ClassManageUI()
+        public AccountManageUI()
         {
             InitializeComponent();
         }

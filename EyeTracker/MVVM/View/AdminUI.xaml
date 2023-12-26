@@ -72,5 +72,19 @@
                    Foreground="White" 
                    Grid.Column="3" Margin="15,0,11,20" 
                    />
+        <TextBlock Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   Text="Quản lý tài khoản"
+                   Foreground="Blue"
+                   FontWeight="Bold"
+                   FontSize="17" Margin="0,14,0,24"
+                   MouseLeftButtonDown="AccountManage_MouseLeftButtonDown"/>
+        <TextBlock Grid.Row="3"
+                   Grid.ColumnSpan="2"
+                   Foreground="Blue"
+                   FontWeight="Bold"
+                   FontSize="17"
+                   Text="Quản lý lớp" Margin="0,65,0,40" Grid.RowSpan="2"
+                   MouseLeftButtonDown="ClassManage_MouseLeftButtonDown"/>
     </Grid>
 </Page>

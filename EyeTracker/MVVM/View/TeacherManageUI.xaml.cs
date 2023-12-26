@@ -80,6 +80,7 @@ namespace EyeTracker.MVVM.View
                 t.MaGV = reader.GetString(2);
                 lops.Add(t);
             }
+            reader.Close();
             dc.GetConnection().Close();
         }
         private TeacherTab teacherTabs(GiaoVien gv)
@@ -200,6 +201,10 @@ namespace EyeTracker.MVVM.View
                     MessageBox.Show(ex.Message);
                 }
                 dc.GetConnection().Close();
+                TeacherWrp.Children.Clear();
+                giaoViens.Clear();
+                TeacherInfo.Clear();
+                LoadData();
             }
             else
             {
@@ -345,6 +350,9 @@ namespace EyeTracker.MVVM.View
             TeacherChange.RemoveData();
             TeacherChange.IsEnabled = false;
             TeacherChange.Visibility = Visibility.Hidden;
+            giaoViens.Clear();
+            TeacherWrp.Children.Clear();
+            LoadData();
         }
         private void NullWrpImage(string id)
         {

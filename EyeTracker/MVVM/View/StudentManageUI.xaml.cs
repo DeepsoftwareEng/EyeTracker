@@ -177,6 +177,7 @@ namespace EyeTracker.MVVM.View
                 MessageBox.Show(ex.Message);
             }
             MessageBox.Show("Thành công!");
+            Students.Clear();
             StudentWrp.Children.Clear();
             LoadStudent();
             StudentChange.Clear();
@@ -252,6 +253,7 @@ namespace EyeTracker.MVVM.View
             StudentChange.Clear();
             StudentChange.Visibility = Visibility.Hidden;
             Students.Clear();
+            StudentWrp.Children.Clear();
             LoadStudent();
             dc.GetConnection().Close();
         }

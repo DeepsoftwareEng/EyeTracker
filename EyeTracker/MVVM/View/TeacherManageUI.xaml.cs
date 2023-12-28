@@ -181,47 +181,62 @@ namespace EyeTracker.MVVM.View
         }
         private void DeleteTeacher(object sender, MouseButtonEventArgs e)
         {
-            if (DeletedTeacherStudent() == 1 && DeletedTeacherClass()==1)
+            if(TeacherInfo.NameTxb.Text != string.Empty)
             {
-                string query = "Delete from GiaoVien where Magv = @magv";
-                if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
-                    dc.GetConnection().Open();
-                cmd = new SqlCommand(query, dc.GetConnection());
-                try
+                if (DeletedTeacherStudent() == 1 && DeletedTeacherClass() == 1)
                 {
-                    cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
-                    cmd.ExecuteNonQuery();
-                    File.Delete($"\\TeacherImage\\{choosenTeacherId}.png");
-                    string content = $"{tentk} - {DateTime.Now}: Xoa giao vien: {choosenTeacherId}";
-                    File.AppendAllText(filepath, content);
-                    MessageBox.Show("Thanh cong");
+                    string query = "Delete from GiaoVien where Magv = @magv";
+                    if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                        dc.GetConnection().Open();
+                    cmd = new SqlCommand(query, dc.GetConnection());
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
+                        cmd.ExecuteNonQuery();
+                        File.Delete($"\\TeacherImage\\{choosenTeacherId}.png");
+                        string content = $"{tentk} - {DateTime.Now}: Xoa giao vien: {choosenTeacherId}";
+                        File.AppendAllText(filepath, content);
+                        MessageBox.Show("Thanh cong");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    dc.GetConnection().Close();
+                    TeacherWrp.Children.Clear();
+                    giaoViens.Clear();
+                    TeacherInfo.Clear();
+                    LoadData();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("khong the chuyen hoc sinh sang giao vien khac");
                 }
-                dc.GetConnection().Close();
-                TeacherWrp.Children.Clear();
-                giaoViens.Clear();
-                TeacherInfo.Clear();
-                LoadData();
             }
             else
             {
-                MessageBox.Show("khong the chuyen hoc sinh sang giao vien khac");
+                MessageBox.Show("Chưa chọn giáo viên để xóa!");
             }
+            
         }
 
         private void EditTeacher(object sender, MouseButtonEventArgs e)
         {
-            GiaoVien temp = new();
-            temp = giaoViens.Where(t => t.MaGV == choosenTeacherId).FirstOrDefault();
-            var lopCN = lops.Where(c => c.MaGV == choosenTeacherId).ToList();
-            TeacherChange.SetData(temp, lopCN,lops);
-            TeacherChange.Visibility = Visibility.Visible;
-            TeacherChange.IsEnabled = true;
-            TeacherChange.SaveBtn.MouseLeftButtonDown += SaveEditTeacher;
-            TeacherChange.SaveBtn.Tag = (sender as Border).Tag.ToString();
+            if(TeacherInfo.NameTxb.Text != string.Empty)
+            {
+                GiaoVien temp = new();
+                temp = giaoViens.Where(t => t.MaGV == choosenTeacherId).FirstOrDefault();
+                var lopCN = lops.Where(c => c.MaGV == choosenTeacherId).ToList();
+                TeacherChange.SetData(temp, lopCN, lops);
+                TeacherChange.Visibility = Visibility.Visible;
+                TeacherChange.IsEnabled = true;
+                TeacherChange.SaveBtn.MouseLeftButtonDown += SaveEditTeacher;
+                TeacherChange.SaveBtn.Tag = (sender as Border).Tag.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn giáo viên để sửa!");
+            } 
         }
         private void SaveEditClass(string magv, List<Lop> ds)
         {

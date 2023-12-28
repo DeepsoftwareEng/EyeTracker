@@ -56,37 +56,52 @@ namespace EyeTracker.MVVM.View
         }
         private void DeleteAccount(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(MessageBox.Show("Co chac chan muon xoa ?","Canh bao", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
+            if (AccountInfo.AccountTxb.Text != string.Empty)
             {
-                KeepTeacher();
-                string query = "Delete from TaiKhoan where tentaikhoan =@tk";
-                if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
-                    dc.GetConnection().Open();
-                cmd = new SqlCommand(query, dc.GetConnection());
-                try
+                if (MessageBox.Show("Co chac chan muon xoa ?", "Canh bao", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
-                    cmd.Parameters.AddWithValue("@tk", AccountInfo.AccountTxb.Text);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Da xoa thanh cong");
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    KeepTeacher();
+                    string query = "Delete from TaiKhoan where tentaikhoan =@tk";
+                    if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                        dc.GetConnection().Open();
+                    cmd = new SqlCommand(query, dc.GetConnection());
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@tk", AccountInfo.AccountTxb.Text);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Da xoa thanh cong");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    dc.GetConnection().Close();
+                    AccountInfo.ClearData();
+                    AccountWrp.Children.Clear();
+                    taikhoans.Clear();
+                    GetTaiKhoans();
                 }
-                dc.GetConnection().Close();
-                AccountInfo.ClearData();
-                AccountWrp.Children.Clear();
-                taikhoans.Clear();
-                GetTaiKhoans();
             }
+            else
+            {
+                MessageBox.Show("Chưa chọn tài khoản để xóa!");
+            }        
         }
 
         private void EditAccount(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            AccountChange.Visibility = Visibility.Visible;
-            AccountChange.AddData(choosenAccount);
-            AccountChange.SaveBtn.MouseLeftButtonDown += SaveEditAccount;
-            AccountChange.AccountTxb.IsReadOnly = true;
-            AccountChange.IsEnabled = true;
+            if(AccountInfo.AccountTxb.Text != string.Empty)
+            {
+                AccountChange.Visibility = Visibility.Visible;
+                AccountChange.AddData(choosenAccount);
+                AccountChange.SaveBtn.MouseLeftButtonDown += SaveEditAccount;
+                AccountChange.AccountTxb.IsReadOnly = true;
+                AccountChange.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn tài khoản để chỉnh sửa!");
+            }
         }
 
         private void SaveEditAccount(object sender, System.Windows.Input.MouseButtonEventArgs e)

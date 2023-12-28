@@ -89,48 +89,64 @@ namespace EyeTracker.MVVM.View
 
         private void DelStudent(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Cảnh báo", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if(StudentInfo.NameTxb.Text != string.Empty)
             {
-                string querry = "delete from HocSinh where MaHocSinh = @mahocsinh";
-                if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
-                    dc.GetConnection().Open();
-                cmd = new SqlCommand(querry, dc.GetConnection());
-                try
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Cảnh báo", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    cmd.Parameters.AddWithValue("@mahocsinh", choosenStudent.MaHocSinh);
-                    cmd.ExecuteNonQuery();
-                    NullWrpImage();
-                    StudentInfo.StudentImg.Source = null;
-                    File.Delete(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png");
-                    string content = $"{maGV} - {DateTime.Now}: Xoa hoc sinh: {choosenStudent.MaHocSinh}";
-                    File.AppendAllText(filepath, content);
+                    string querry = "delete from HocSinh where MaHocSinh = @mahocsinh";
+                    if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
+                        dc.GetConnection().Open();
+                    cmd = new SqlCommand(querry, dc.GetConnection());
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@mahocsinh", choosenStudent.MaHocSinh);
+                        cmd.ExecuteNonQuery();
+                        NullWrpImage();
+                        StudentInfo.StudentImg.Source = null;
+                        File.Delete(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png");
+                        string content = $"{maGV} - {DateTime.Now}: Xoa hoc sinh: {choosenStudent.MaHocSinh}";
+                        File.AppendAllText(filepath, content);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    StudentInfo.Clear();
+                    StudentWrp.Children.RemoveAt(choosenStudent.MaHocSinh);
+                    choosenStudent = new HocSinh();
+                    MessageBox.Show("Xóa thành công");
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                StudentInfo.Clear();
-                StudentWrp.Children.RemoveAt(choosenStudent.MaHocSinh);
-                choosenStudent = new HocSinh();
-                MessageBox.Show("Xóa thành công");
             }
+            else
+            {
+                MessageBox.Show("Chưa chọn học sinh để xóa!");
+            }
+            
         }
 
         private void EditStudent(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            StudentChange.IsEnabled = true;
-            StudentChange.Visibility = Visibility.Visible;
-            StudentChange.SaveBtn.MouseLeftButtonDown += EditSaveBtn;
-            StudentChange.addInfo(choosenStudent);
-            StudentChange.AddCbbData(giaoviens, lops);
-            Stream fs = File.Open(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png", FileMode.Open);
-            BitmapImage bmp = new BitmapImage();
-            bmp.BeginInit();
-            bmp.CacheOption = BitmapCacheOption.OnLoad; // This will allow you to close the stream after EndInit
-            bmp.StreamSource = fs;
-            bmp.EndInit();
-            StudentChange.StudentImg.Source = bmp;
-            fs.Close();
+            if(StudentInfo.NameTxb.Text != string.Empty)
+            {
+                StudentChange.IsEnabled = true;
+                StudentChange.Visibility = Visibility.Visible;
+                StudentChange.SaveBtn.MouseLeftButtonDown += EditSaveBtn;
+                StudentChange.addInfo(choosenStudent);
+                StudentChange.AddCbbData(giaoviens, lops);
+                Stream fs = File.Open(dataFolderPath + $"\\StudentImage\\{choosenStudent.MaHocSinh}.png", FileMode.Open);
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+                bmp.CacheOption = BitmapCacheOption.OnLoad; // This will allow you to close the stream after EndInit
+                bmp.StreamSource = fs;
+                bmp.EndInit();
+                StudentChange.StudentImg.Source = bmp;
+                fs.Close();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn học sinh để sửa !");
+            }
+            
         }
 
         private void EditSaveBtn(object sender, System.Windows.Input.MouseButtonEventArgs e)

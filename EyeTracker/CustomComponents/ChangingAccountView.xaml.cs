@@ -24,18 +24,31 @@ namespace EyeTracker.CustomComponents
         public ChangingAccountView()
         {
             InitializeComponent();
+            RoleTxb.Items.Add("Admin");
+            RoleTxb.Items.Add("Teacher");
         }
         public void AddData(TaiKhoan tk)
         {
             AccountTxb.Text = tk.TenTaiKhoan;
             PasswordTxb.Text = tk.MatKhau;
-            RoleTxb.Text = tk.Chucvu;
+            RoleTxb.SelectedItem = tk.Chucvu;
         }
         public void ClearData()
         {
             AccountTxb.Text = string.Empty;
             PasswordTxb.Text = string.Empty;
-            RoleTxb.Text = string.Empty;
+            RoleTxb.SelectedIndex = 0;
+        }
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(36, 157, 159));
+            (sender as Border).Background = brush;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
+            (sender as Border).Background = brush;
         }
     }
 }

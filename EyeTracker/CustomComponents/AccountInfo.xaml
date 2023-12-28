@@ -44,16 +44,22 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10"
+            <Border CornerRadius="10" x:Name="AddBtn"
+                    MouseEnter="Border_MouseEnter"
+                    MouseLeave="Border_MouseLeave"
                     Background="Aqua" Margin="10,1,13,1"  Grid.Row="1">
                 <Image Source="/Resource/addicon.png"/>
             </Border>
-            <Border CornerRadius="10"
+            <Border CornerRadius="10" x:Name="EditBtn"
+                    MouseEnter="Border_MouseEnter"
+                    MouseLeave="Border_MouseLeave"
                     Background="Aqua" Margin="10,1,13,1" Grid.Row="1"
                     Grid.Column="1" >
                 <Image Source="/Resource/editicon.png"/>
             </Border>
-            <Border CornerRadius="10"
+            <Border CornerRadius="10" x:Name="DelBtn"
+                    MouseEnter="Border_MouseEnter"
+                    MouseLeave="Border_MouseLeave"
                     Background="Aqua" Margin="10,1,13,1"  
                     Grid.Column="2"
                     Grid.Row="1">

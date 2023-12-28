@@ -37,5 +37,16 @@ namespace EyeTracker.CustomComponents
             PasswordTxb.Text = string.Empty;
             RoleTxb.Text = string.Empty;
         }
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(36, 157, 159));
+            (sender as Border).Background = brush;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
+            (sender as Border).Background = brush;
+        }
     }
 }

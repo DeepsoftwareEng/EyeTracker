@@ -43,6 +43,7 @@ drop table HocSinh;
 drop table Lop;
 drop table GiaoVien;
 -- Insert tài khoản
+insert into TaiKhoan values ('','','teacher')
 INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
 VALUES ('admin', '123456', 'admin');
 INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
@@ -102,3 +103,6 @@ select Top 1 * from GiaoVien Order By MaGV DESC
 select COUNT(*) from Lop
 select Count(*) from HocSinh
 select * from GiaoVien where MaGv != 'GV00' and ChucVu != 'admin'
+update TaiKhoan set ChucVu = 'Admin' where TenTaiKhoan = 'admin'
+select * from TaiKhoan where TenTaiKhoan != '' and TenTaiKhoan != 'gv0'
+select * from GiaoVien

@@ -27,7 +27,7 @@ namespace EyeTracker.CustomComponents
         }
         public void RemoveImage()
         {
-            TeacherImg.Source = null;
+            TeacherImg.ImageSource = null;
         }
     }
 }

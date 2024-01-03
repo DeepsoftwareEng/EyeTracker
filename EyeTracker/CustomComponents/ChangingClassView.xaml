@@ -37,6 +37,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -44,13 +47,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border CornerRadius="10" x:Name="BackBtn"
-                Background="Aqua" Margin="33,1,21,1"  Grid.Row="1">
+                Background="#BC9328"  Grid.Row="1"
+                    Grid.Column="1">
                 <Image Source="/Resource/backicon.png" Margin="11,5,11,5" />
             </Border>
             <Border CornerRadius="10" x:Name="SaveBtn"
-                Background="Aqua" Margin="27,1,27,1" Grid.Row="1"
-                Grid.Column="1" >
-                <Image Source="/Resource/saveicon.png" Margin="19,4,19,4"/>
+                Background="#BC9328"  Grid.Row="1"
+                Grid.Column="3" >
+                <Image Source="/Resource/saveicon.png" Margin="4,2,4,2" />
             </Border>
 
         </Grid>

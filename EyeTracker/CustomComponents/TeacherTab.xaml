@@ -23,7 +23,14 @@
             Grid.ColumnSpan="3" 
             Background="LightGray" 
             CornerRadius="8"/>
-                <Image x:Name="TeacherImg" Stretch="Uniform"/>
+                <Ellipse StrokeThickness="1"
+                 Stroke="White"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="TeacherImg" Stretch="Uniform"/>
+                    </Ellipse.Fill>
+                </Ellipse>
                 <TextBlock Grid.Column="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"

@@ -6,8 +6,6 @@
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
               Background="LightGray" Height="280" Width="244">
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
@@ -77,7 +75,7 @@
                HorizontalAlignment="Left"/>
 
         <Border Grid.Row="3" Margin="61,17,22,34"
-     Background="Aqua" 
+     Background="LightGray" 
      MouseEnter="Border_MouseEnter"
      MouseLeave="Border_MouseLeave"
      CornerRadius="6"
@@ -85,7 +83,7 @@
             <Image Source="/Resource/addicon.png" Margin="-7,-4,-7,-4"/>
         </Border>
         <Border Grid.Row="3"
-            Background="Aqua"
+            Background="LightGray"
             MouseEnter="Border_MouseEnter"
             MouseLeave="Border_MouseLeave" Margin="5,17,81,34" Grid.Column="1"  
             CornerRadius="6"
@@ -93,7 +91,7 @@
             <Image Source="/Resource/editicon.png "/>
         </Border>
         <Border Grid.Row="3" Grid.Column="2" 
-            Background="Aqua"
+            Background="LightGray"
             MouseEnter="Border_MouseEnter"
             MouseLeave="Border_MouseLeave"  Margin="20,17,20,34"
             CornerRadius="6"

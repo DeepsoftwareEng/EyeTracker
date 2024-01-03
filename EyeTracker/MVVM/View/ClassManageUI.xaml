@@ -7,18 +7,52 @@
       xmlns:Comp="clr-namespace:EyeTracker.CustomComponents"
       mc:Ignorable="d" 
       d:DesignHeight="280" d:DesignWidth="650"
-      Background="LightGray"
+      Background="White"
       Title="ClassManageUI">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="0" Margin="0,0,5,0">
-            <WrapPanel x:Name="ClassWrp"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#BC9328"
+              >
+            <TextBlock Text="Danh sách lớp học"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+        </Grid>
+        <Grid Background="#BC9328"
+              Grid.Column="2"
+              >
+            <TextBlock Text="Chi tiết lớp học"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <ScrollViewer Grid.Column="0" 
+                      Grid.Row="1"
+                      Background="LightGray">
+            <WrapPanel x:Name="ClassWrp">
+                <WrapPanel.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="10,10,0,0"/>
+                    </Style>
+                </WrapPanel.Resources>
+            </WrapPanel>
         </ScrollViewer>
-        <Comp:ClassInfo Grid.Column="1" x:Name="ClassInfo"/>
-        <Comp:ChangingClassView Grid.Column="1" 
+        <Comp:ClassInfo Grid.Column="2"
+                        Grid.Row="1"
+                        x:Name="ClassInfo"/>
+        <Comp:ChangingClassView Grid.Column="2" 
+                                Grid.Row="1"
                                x:Name="ClassChange" 
                                IsEnabled="False" 
                                Visibility="Hidden"/>

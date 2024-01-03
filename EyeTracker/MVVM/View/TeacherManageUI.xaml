@@ -13,13 +13,41 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="0" Margin="0,0,5,0" Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#BC9328"
+              >
+            <TextBlock Text="Danh sách giáo viên trong trường"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+        </Grid>
+        <Grid Background="#BC9328"
+              Grid.Column="2"
+              >
+            <TextBlock Text="Chi tiết giáo viên"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <ScrollViewer Grid.Column="0"
+                      Grid.Row="1" 
+                      Margin="0,0,5,0" Background="LightGray">
             <WrapPanel x:Name="TeacherWrp" Height="280"/>
         </ScrollViewer>
-        <Comp:TeacherInfo Grid.Column="1" x:Name="TeacherInfo"/>
-        <Comp:ChangingTeacherView Grid.Column="1" 
+        <Comp:TeacherInfo Grid.Column="2"
+                          Grid.Row="1"
+                          x:Name="TeacherInfo"/>
+        <Comp:ChangingTeacherView Grid.Column="2" 
+                                  Grid.Row="1"
                                   x:Name="TeacherChange" 
                                   IsEnabled="False" 
                                   Visibility="Hidden"/>

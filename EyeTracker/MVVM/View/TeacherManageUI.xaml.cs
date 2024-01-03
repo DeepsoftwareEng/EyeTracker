@@ -94,7 +94,7 @@ namespace EyeTracker.MVVM.View
             bmp.CacheOption = BitmapCacheOption.OnLoad; // This will allow you to close the stream after EndInit
             bmp.StreamSource = fs;
             bmp.EndInit();
-            temp.TeacherImg.Source = bmp;
+            temp.TeacherImg.ImageSource = bmp;
             fs.Close();
             temp.MouseLeftButtonDown += ChooseTeacher;
             temp.Tag = gv.MaGV;

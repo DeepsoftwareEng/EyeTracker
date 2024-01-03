@@ -57,15 +57,14 @@ namespace EyeTracker.CustomComponents
         }
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(36, 157, 159));
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(50, 48, 15));
             (sender as Border).Background = brush;
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(74, 58, 16));
             (sender as Border).Background = brush;
         }
-
     }
 }

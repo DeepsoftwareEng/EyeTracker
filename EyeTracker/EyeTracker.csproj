@@ -12,6 +12,7 @@
     <None Remove="Resource\addicon.png" />
     <None Remove="Resource\backicon.png" />
     <None Remove="Resource\bg.png" />
+    <None Remove="Resource\dashboard.png" />
     <None Remove="Resource\delicon.png" />
     <None Remove="Resource\editicon.png" />
     <None Remove="Resource\export-excel.png" />
@@ -33,10 +34,13 @@
     <None Remove="Resource\Font\Quicksand-VariableFont_wght.ttf" />
     <None Remove="Resource\Logo.png" />
     <None Remove="Resource\quanligv.png" />
+    <None Remove="Resource\quanlihocsinh.png" />
     <None Remove="Resource\quanlilop.png" />
     <None Remove="Resource\quanlitaikhoan.png" />
     <None Remove="Resource\saveicon.png" />
     <None Remove="Resource\thoatchuongtrinh.png" />
+    <None Remove="Resource\Thongke.png" />
+    <None Remove="Resource\xembieudo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +55,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\bg.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\dashboard.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\delicon.png">
@@ -116,6 +123,9 @@
     <Resource Include="Resource\quanligv.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resource\quanlihocsinh.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resource\quanlilop.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -126,6 +136,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\thoatchuongtrinh.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Thongke.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\xembieudo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

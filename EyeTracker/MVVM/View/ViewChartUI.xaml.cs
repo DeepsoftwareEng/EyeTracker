@@ -84,7 +84,7 @@ namespace EyeTracker.MVVM.View
                 PieSeries t = new PieSeries();
                 t.Title = i.ToString();
                 t.Values = new ChartValues<ObservableValue> { new ObservableValue(sameclass.Where(s => s.Mypoia == i).Count())};
-                t.LabelPoint = chartPoint => string.Format(i.ToString()+": " + (chartPoint.Participation*100).ToString()+"%");
+                t.LabelPoint = chartPoint => string.Format(i.ToString()+": " + (chartPoint.Participation*100).ToString().Substring(0,5)+"%");
                 t.DataLabels = true;
                 seriesViews.Add(t);
             }

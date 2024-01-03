@@ -20,9 +20,12 @@ namespace EyeTracker.CustomComponents
     /// </summary>
     public partial class ClassTab : UserControl
     {
-        public ClassTab()
+        public ClassTab(string tengiaovien, string tenlop)
         {
             InitializeComponent();
+            TenClassTxb.Text = tenlop;
+            TeacherNameTxb.Text = tengiaovien;
+
         }
     }
 }

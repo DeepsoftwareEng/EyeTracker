@@ -38,7 +38,7 @@ namespace EyeTracker.CustomComponents
             TeacherTxb.SelectedValuePath = "MaGV";
             TeacherTxb.SelectedIndex = 0;
         }
-        public void Clear() 
+        public void Clear()
         {
             NameTxb.Text = string.Empty;
             DateTxb.Text = string.Empty;

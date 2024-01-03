@@ -5,8 +5,70 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+              d:DesignHeight="280 " d:DesignWidth="244"
+             Background="LightGray">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Mã lớp học:"
+               FontWeight="Bold"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"/>
+        <TextBlock Text="Tên lớp học:"
+               Grid.Row="1"
+               FontWeight="Bold"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"/>
+        <TextBlock Text="Giáo viên: "
+               Grid.Row="2"
+               FontWeight="Bold"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"/>
+        <Grid Grid.Row="3"
+          Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="10" x:Name="BackBtn"
+                Background="Aqua" Margin="33,1,21,1"  Grid.Row="1">
+                <Image Source="/Resource/backicon.png" Margin="11,5,11,5" />
+            </Border>
+            <Border CornerRadius="10" x:Name="SaveBtn"
+                Background="Aqua" Margin="27,1,27,1" Grid.Row="1"
+                Grid.Column="1" >
+                <Image Source="/Resource/saveicon.png" Margin="19,4,19,4"/>
+            </Border>
+
+        </Grid>
+        <TextBox Grid.Column="1"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               x:Name="txtMalophoc"
+             Width="129"/>
+        <TextBox Grid.Column="1"
+               Grid.Row="1"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               x:Name="txtTenLophoc"
+             Width="129"/>
+        <ComboBox Grid.Column="1"
+               Grid.Row="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               x:Name="txtGiaoVien" Width="129"/>
     </Grid>
 </UserControl>

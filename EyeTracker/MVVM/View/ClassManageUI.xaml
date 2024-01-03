@@ -7,10 +7,20 @@
       xmlns:Comp="clr-namespace:EyeTracker.CustomComponents"
       mc:Ignorable="d" 
       d:DesignHeight="280" d:DesignWidth="650"
-      Background="White"
+      Background="LightGray"
       Title="ClassManageUI">
-
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.75*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" Margin="0,0,5,0">
+            <WrapPanel x:Name="ClassWrp"/>
+        </ScrollViewer>
+        <Comp:ClassInfo Grid.Column="1" x:Name="ClassInfo"/>
+        <Comp:ChangingClassView Grid.Column="1" 
+                               x:Name="ClassChange" 
+                               IsEnabled="False" 
+                               Visibility="Hidden"/>
     </Grid>
 </Page>

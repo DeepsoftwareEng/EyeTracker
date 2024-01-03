@@ -29,9 +29,9 @@ namespace EyeTracker.MVVM.View
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            int temp = 0; 
+            int temp = 0;
             string query = "Select Count(1) from TaiKhoan where TenTaiKhoan = @tentk and MatKhau = @mk";
-            if(dc.GetConnection().State == System.Data.ConnectionState.Closed)
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             try
             {
@@ -39,32 +39,35 @@ namespace EyeTracker.MVVM.View
                 cmd.Parameters.AddWithValue("@tentk", UsernameTxb.Text);
                 cmd.Parameters.AddWithValue("@mk", PassTxb.Password);
                 temp = Int32.Parse(cmd.ExecuteScalar().ToString());
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
-            
-            if(temp == 1)
+
+
+            if (temp == 1)
             {
                 query = "Select ChucVu from TaiKhoan where TenTaiKhoan = @tentk";
                 cmd = new SqlCommand(query, dc.GetConnection());
                 string role = "";
+                string tengv = "";
                 string magv = "";
                 try
                 {
                     cmd.Parameters.AddWithValue("@tentk", UsernameTxb.Text);
                     role = cmd.ExecuteScalar().ToString();
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                if(role.ToUpper() == "ADMIN")
+                if (role.ToUpper() == "ADMIN")
                 {
                     string filepath = $"{dataFolderPath}\\admin-{UsernameTxb.Text}.txt";
                     if (!File.Exists(filepath))
                     {
-                        File.Create(filepath).Close() ;
+                        File.Create(filepath).Close();
                         StreamWriter writer = new StreamWriter(filepath);
                         writer.Write($"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin");
                         writer.Close();
@@ -78,20 +81,27 @@ namespace EyeTracker.MVVM.View
                 }
                 else
                 {
-                    query = "Select MaGV from GiaoVien where TenTaiKhoan = @tentk";
-                    cmd = new SqlCommand(query , dc.GetConnection());
+                    query = "Select MaGV, TenGV from GiaoVien where TenTaiKhoan = @tentk";
+                    cmd = new SqlCommand(query, dc.GetConnection());
                     try
                     {
                         cmd.Parameters.AddWithValue("@tentk", UsernameTxb.Text);
-                        magv = cmd.ExecuteScalar().ToString();  
-                    }catch(Exception ex)
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            magv = reader.GetString(0);
+                            tengv = reader.GetString(1);
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
                     string filepath = $"{dataFolderPath}\\{magv}.txt";
                     if (!File.Exists(filepath))
                     {
-                        File.Create(filepath).Close() ;
+                        File.Create(filepath).Close();
                         StreamWriter writer = new StreamWriter(filepath);
                         writer.Write($"{magv}-{DateTime.Now}: Login as Teacher");
                         writer.Close();
@@ -101,9 +111,9 @@ namespace EyeTracker.MVVM.View
                         string content = $"{magv}-{DateTime.Now}: Login as Teacher";
                         File.AppendAllText(filepath, content);
                     }
-                    this.NavigationService.Navigate(new MainMenuUI(magv));
+                    this.NavigationService.Navigate(new MainMenuUI(magv, tengv));
                 }
-                
+
             }
             else
             {

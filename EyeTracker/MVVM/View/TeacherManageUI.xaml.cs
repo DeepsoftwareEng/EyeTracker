@@ -86,6 +86,7 @@ namespace EyeTracker.MVVM.View
         private TeacherTab teacherTabs(GiaoVien gv)
         {
             TeacherTab temp = new TeacherTab();
+            temp.Width = 100;
             temp.TeacherNameTxb.Text = gv.TenGV;
             Stream fs = File.Open(dataFolderPath + $"\\TeacherImage\\{gv.MaGV}.png", FileMode.Open);
             BitmapImage bmp = new BitmapImage();
@@ -105,7 +106,7 @@ namespace EyeTracker.MVVM.View
             string teacherId = (sender as TeacherTab).Tag.ToString();
             var lopCN = lops.Where(c => c.MaGV == teacherId).ToList();
             var gv = giaoViens.Where(t => t.MaGV == teacherId).FirstOrDefault();
-            TeacherInfo.addInfo(gv,lopCN);
+            TeacherInfo.addInfo(gv, lopCN);
             Stream fs = File.Open(dataFolderPath + $"\\TeacherImage\\{gv.MaGV}.png", FileMode.Open);
             BitmapImage bmp = new BitmapImage();
             bmp.BeginInit();
@@ -171,7 +172,8 @@ namespace EyeTracker.MVVM.View
             {
                 cmd.Parameters.AddWithValue("@magv", choosenTeacherId);
                 cmd.ExecuteNonQuery();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return 0;
@@ -181,7 +183,7 @@ namespace EyeTracker.MVVM.View
         }
         private void DeleteTeacher(object sender, MouseButtonEventArgs e)
         {
-            if(TeacherInfo.NameTxb.Text != string.Empty)
+            if (TeacherInfo.NameTxb.Text != string.Empty)
             {
                 if (DeletedTeacherStudent() == 1 && DeletedTeacherClass() == 1)
                 {
@@ -217,12 +219,12 @@ namespace EyeTracker.MVVM.View
             {
                 MessageBox.Show("Chưa chọn giáo viên để xóa!");
             }
-            
+
         }
 
         private void EditTeacher(object sender, MouseButtonEventArgs e)
         {
-            if(TeacherInfo.NameTxb.Text != string.Empty)
+            if (TeacherInfo.NameTxb.Text != string.Empty)
             {
                 GiaoVien temp = new();
                 temp = giaoViens.Where(t => t.MaGV == choosenTeacherId).FirstOrDefault();
@@ -236,16 +238,16 @@ namespace EyeTracker.MVVM.View
             else
             {
                 MessageBox.Show("Chưa chọn giáo viên để sửa!");
-            } 
+            }
         }
         private void SaveEditClass(string magv, List<Lop> ds)
         {
             string query = "Update Lop Set GVCN = @gvcn where MaLop = @malop";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
-            cmd = new SqlCommand(query,dc.GetConnection());
+            cmd = new SqlCommand(query, dc.GetConnection());
             cmd.Parameters.AddWithValue("@gvcn", magv);
-            foreach(var i in ds)
+            foreach (var i in ds)
             {
                 cmd.Parameters.AddWithValue("@malop", i.MaLop);
                 try
@@ -279,7 +281,7 @@ namespace EyeTracker.MVVM.View
             try
             {
                 cmd.ExecuteNonQuery();
-                if(choosenImage != null && choosenImage != dataFolderPath+$"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png")
+                if (choosenImage != null && choosenImage != dataFolderPath + $"\\TeacherImage\\{(sender as Border).Tag.ToString()}.png")
                 {
                     TeacherChange.TeacherImg.Source = null;
                     NullWrpImage((sender as Border).Tag.ToString());
@@ -297,7 +299,8 @@ namespace EyeTracker.MVVM.View
                 string content = $"{tentk} - {DateTime.Now}: Sua giao vien: {choosenTeacherId}";
                 File.AppendAllText(filepath, content);
                 MessageBox.Show("Thanh cong");
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -321,13 +324,14 @@ namespace EyeTracker.MVVM.View
         {
             string t = "";
             string query = "select Top 1 * from GiaoVien Order By MaGV DESC";
-            if(dc.GetConnection().State == System.Data.ConnectionState.Closed)
+            if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
             try
             {
                 t = cmd.ExecuteScalar().ToString().Substring(2);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -344,7 +348,7 @@ namespace EyeTracker.MVVM.View
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
-            cmd.Parameters.AddWithValue("@magv", "GV" +NewId);
+            cmd.Parameters.AddWithValue("@magv", "GV" + NewId);
             cmd.Parameters.AddWithValue("@tengv", TeacherChange.NameTxb.Text);
             cmd.Parameters.AddWithValue("@ngaysinh", date.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@tentk", TeacherChange.AccountTxb.Text);
@@ -354,7 +358,8 @@ namespace EyeTracker.MVVM.View
                 string content = $"{tentk} - {DateTime.Now}: Them giao vien: {"GV" + NewId}";
                 File.AppendAllText(filepath, content);
                 MessageBox.Show("Thanh cong");
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -371,7 +376,7 @@ namespace EyeTracker.MVVM.View
         }
         private void NullWrpImage(string id)
         {
-            foreach(var i in TeacherWrp.Children)
+            foreach (var i in TeacherWrp.Children)
             {
                 if (i is TeacherTab temp && temp.Tag.ToString() == id)
                     temp.RemoveImage();

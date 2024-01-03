@@ -75,7 +75,7 @@
                    HorizontalAlignment="Left"/>
         <TextBox Grid.Column="1"
                    x:Name="NameTxb"
-                   FontSize="17"
+                   FontSize="10"
                    Grid.ColumnSpan="2"
                    Margin="0,16,5,14"/>
         <TextBox Grid.Row="1"

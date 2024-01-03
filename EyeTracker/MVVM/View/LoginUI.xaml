@@ -13,10 +13,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5* "/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="8.5*"/>
+            <RowDefinition Height="7.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
@@ -33,13 +33,13 @@
         <TextBlock Grid.Column="1" 
                    Grid.Row="1" 
                    Text="Tài khoản:" 
-                   Margin="10,16,135,18" 
+                   Margin="9,11,136,19" 
                     />
         <TextBox Grid.Column="1" 
                  Grid.Row="1" 
                  Name="UsernameTxb" 
-                 FontSize="12"
-                 Margin="74,16,10,16"/>
+                 FontSize="10"
+                 Margin="74,12,10,19"/>
         <TextBlock Grid.Column="1" 
                    Grid.Row="2" 
                    Text="Mật khẩu:" 
@@ -47,7 +47,7 @@
                    />
         <PasswordBox Grid.Column="1" 
                  Grid.Row="2" 
-                 Name="PassTxb" Margin="74,5,10,3" 
+                 Name="PassTxb" Margin="74,5,10,24" 
                  FontSize="12"
                  />
         <Button Grid.Column="1" 

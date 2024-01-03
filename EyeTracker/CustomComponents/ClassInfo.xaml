@@ -5,8 +5,100 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EyeTracker.CustomComponents"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+              Background="LightGray" Height="280" Width="244">
+
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <ListView 
+     x:Name="ClassLOL"
+     FontSize="8"
+     VerticalAlignment="Center"
+     HorizontalAlignment="Left"/>
+
+        <TextBlock Grid.Row="0"
+               Text="  Mã lớp: "
+                VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="4,31,0,0"/>
+        <TextBlock Grid.Row="1"
+               Text="  Tên lớp: "
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="2"
+               Text="  Giáo viên chủ nhiệm: "
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               />
+
+        <TextBlock Grid.Column="1"
+               x:Name="MaLopTxb"
+                   Grid.ColumnSpan="2"
+               FontSize="17"
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="1"
+               Grid.Column="1"
+               x:Name="TenLopTxb"
+                   Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="2"
+               Grid.Column="1"
+               x:Name="TenGvTxb"
+                   
+                   Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="3"
+               Grid.Column="1"
+             
+               TextWrapping="Wrap"
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="4"
+               Grid.Column="1"
+               
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="0,17,0,0" Grid.RowSpan="2"/>
+        <TextBlock Grid.Row="5"
+               Grid.Column="1"
+               x:Name="ClassTxb"
+                VerticalAlignment="Center"
+               HorizontalAlignment="Left"/>
+
+        <Border Grid.Row="3" Margin="61,17,22,34"
+     Background="Aqua" 
+     MouseEnter="Border_MouseEnter"
+     MouseLeave="Border_MouseLeave"
+     CornerRadius="6"
+     x:Name="AddBtn">
+            <Image Source="/Resource/addicon.png" Margin="-7,-4,-7,-4"/>
+        </Border>
+        <Border Grid.Row="3"
+            Background="Aqua"
+            MouseEnter="Border_MouseEnter"
+            MouseLeave="Border_MouseLeave" Margin="5,17,81,34" Grid.Column="1"  
+            CornerRadius="6"
+            x:Name="EditBtn" Grid.ColumnSpan="2">
+            <Image Source="/Resource/editicon.png "/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="2" 
+            Background="Aqua"
+            MouseEnter="Border_MouseEnter"
+            MouseLeave="Border_MouseLeave"  Margin="20,17,20,34"
+            CornerRadius="6"
+            x:Name="DelBtn">
+            <Image Source="/Resource/delicon.png"/>
+        </Border>
     </Grid>
 </UserControl>

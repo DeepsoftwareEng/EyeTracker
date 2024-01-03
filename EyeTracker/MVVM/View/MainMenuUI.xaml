@@ -41,10 +41,10 @@
         </Ellipse>
         <TextBlock x:Name="TeacherNameTxb"
                    FontSize="8" 
-                   Text="Nguyễn Phúc Hưng"
                    Foreground="WhiteSmoke"
                    Grid.Column="1" Margin="5,17,15,20"/>
-        <TextBlock Text="Lớp: 4A" 
+        <TextBlock Text="Mã giáo viên: " 
+                   x:Name="MagvTxb"
                    FontSize="8" 
                    Grid.Column="1"
                    Foreground="WhiteSmoke" Margin="5,35,15,1" />

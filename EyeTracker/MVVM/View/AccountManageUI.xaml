@@ -6,29 +6,49 @@
       xmlns:local="clr-namespace:EyeTracker.MVVM.View"
       xmlns:Comp ="clr-namespace:EyeTracker.CustomComponents"
       mc:Ignorable="d" 
-       d:DesignHeight="280" d:DesignWidth="650" 
-      Background="LightGray"
+      d:DesignHeight="280" d:DesignWidth="650" 
+      Background="White"
       Title="AccountManageUI">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.75*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Column="0" Margin="0,0,5,0">
-            <WrapPanel x:Name="AccountWrp" Height="280">
-                <WrapPanel.Resources>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Margin" Value="10,0" />
-                        <Setter Property="Padding" Value="10,10" />
-                    </Style>
-                </WrapPanel.Resources>
-            </WrapPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#BC9328"
+              >
+            <TextBlock Text="Danh sách tài khoản"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+                        
+        </Grid>
+        <Grid Background="#BC9328"
+              Grid.Column="2"
+              >
+            <TextBlock Text="Chi tiết tài khoản"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <WrapPanel x:Name="AccountWrp"
+                       Background="LightGray"
+                       />
         </ScrollViewer>
         <Comp:AccountInfo x:Name="AccountInfo"
-                          Grid.Column="1"/>
+                          Grid.Row="1"
+                          Grid.Column="2"/>
         <Comp:ChangingAccountView x:Name="AccountChange"
-                                  Grid.Column="1"
+                                  Grid.Column="2"
+                                  Grid.Row="1"
                                   IsEnabled="False"
                                   Visibility="Hidden"/>
     </Grid>

@@ -12,79 +12,119 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="3* "/>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4* "/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.25*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="Aquamarine" 
-                   Grid.RowSpan="8"
-                   Grid.ColumnSpan="2" />
-        <Rectangle Fill="Aqua" 
-                   Grid.Column="2" 
+        <Rectangle Fill="#99D1AA7C" 
+                   Grid.RowSpan="8" />
+        <Rectangle Fill="#DDF4EDE4" 
+                   Grid.Column="1" 
                    Grid.ColumnSpan="3"
                    />
-        <Ellipse StrokeThickness="1"
-                 Stroke="White" Margin="10,10,0,5" >
-            <Ellipse.Fill>
-                <ImageBrush x:Name="TeacherImg"/>
-            </Ellipse.Fill>
-        </Ellipse>
-        <TextBlock x:Name="TeacherNameTxb"
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.75*"/>
+                <ColumnDefinition Width="1.25*"/>
+            </Grid.ColumnDefinitions>
+            <Ellipse StrokeThickness="1"
+                 Stroke="White"  
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="TeacherImg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock x:Name="TeacherNameTxb"
+                    Grid.Column="1"
                    FontSize="8" 
                    Text="Nguyễn Phúc Hưng"
-                   Foreground="WhiteSmoke"
-                   Grid.Column="1" Margin="5,17,15,20"/>
-        <TextBlock Text="Lớp: 4A" 
-                   FontSize="8" 
-                   Grid.Column="1"
-                   Foreground="WhiteSmoke" Margin="5,35,15,1" />
-        <TextBlock Text="  Quản lý giáo viên"
-                   Foreground="Blue"
-                   FontWeight="Bold"
-                   FontSize="17"
-                   Grid.Row="2 "
-                   Grid.ColumnSpan="2"
-                   MouseLeftButtonDown="QuanLyGiaoVien_MouseLeftButtonDown" Margin="-5,31,5,10" />
-        <Image Source="/Resource/LogoutIcon.png" 
-               Grid.ColumnSpan="2"
-               Grid.Row="6"
-               x:Name="LogoutImg"
-               MouseLeftButtonDown="LogoutImg_MouseLeftButtonDown" />
+                   Foreground="Black"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        </Grid>
+        
+       
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resource/Logo.png"/>
+            <TextBlock Grid.Row="1" 
+                       Text="Eyetracker"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="/Resource/Font/Inter-VariableFont_slnt,wght.ttf"
+                       FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Row="1" MouseLeftButtonDown="QuanLyGiaoVien_MouseLeftButtonDown">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resource/quanligv.png"/>
+            <TextBlock Grid.Row="1"
+                       Text="Quản lý giáo viên"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="/Resource/Font/Inter-VariableFont_slnt,wght.ttf"
+                       FontWeight="Bold"
+                        />
+        </Grid>
+        <Grid Grid.Row="2" MouseLeftButtonDown="AccountManage_MouseLeftButtonDown">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resource/quanlitaikhoan.png"/>
+            <TextBlock Grid.Row="1"
+                       Text="Quản lý tài khoản"
+                        HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="/Resource/Font/Inter-VariableFont_slnt,wght.ttf"
+                       FontWeight="Bold"
+                        />
+        </Grid>
+        <Grid Grid.Row="3"
+               MouseLeftButtonDown="ClassManage_MouseLeftButtonDown">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resource/quanlilop.png"/>
+            <TextBlock Grid.Row="1"
+                       Text="Quản lý lớp"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="/Resource/Font/Inter-VariableFont_slnt,wght.ttf"
+                       FontWeight="Bold"
+                       
+                       /> 
+        </Grid>
+        <Grid Grid.Row="4" MouseLeftButtonDown="LogoutImg_MouseLeftButtonDown">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resource/thoatchuongtrinh.png"/>
+            <TextBlock Grid.Row="1"
+                       Text="Đăng xuất"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="/Resource/Font/Inter-VariableFont_slnt,wght.ttf"
+                       FontWeight="Bold"/>
+        </Grid>
         <Frame x:Name="ManageContentChange"
-               Grid.Column="2"
+               Grid.Column="1"
                Grid.Row="1"
-               Grid.RowSpan="6"
-               Grid.ColumnSpan="3"/>
-        <TextBlock Text="Xin chào"
-                   FontSize="32"
-                   FontWeight="DemiBold"
-                   Foreground="White" 
-                   Grid.Column="3" Margin="15,0,11,20" 
-                   />
-        <TextBlock Grid.Row="3"
-                   Grid.ColumnSpan="2"
-                   Text="Quản lý tài khoản"
-                   Foreground="Blue"
-                   FontWeight="Bold"
-                   FontSize="17" Margin="0,14,0,24"
-                   MouseLeftButtonDown="AccountManage_MouseLeftButtonDown"/>
-        <TextBlock Grid.Row="3"
-                   Grid.ColumnSpan="2"
-                   Foreground="Blue"
-                   FontWeight="Bold"
-                   FontSize="17"
-                   Text="Quản lý lớp" Margin="0,65,0,40" Grid.RowSpan="2"
-                   MouseLeftButtonDown="ClassManage_MouseLeftButtonDown"/>
+               Grid.RowSpan="4"
+               Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

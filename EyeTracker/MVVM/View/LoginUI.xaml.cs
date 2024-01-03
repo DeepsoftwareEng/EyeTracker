@@ -121,5 +121,10 @@ namespace EyeTracker.MVVM.View
             }
             dc.GetConnection().Close();
         }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

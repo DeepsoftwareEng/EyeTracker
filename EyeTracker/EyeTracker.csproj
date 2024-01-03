@@ -10,14 +10,33 @@
 
   <ItemGroup>
     <None Remove="Resource\addicon.png" />
-    <None Remove="Resource\Background.png" />
     <None Remove="Resource\backicon.png" />
+    <None Remove="Resource\bg.png" />
     <None Remove="Resource\delicon.png" />
     <None Remove="Resource\editicon.png" />
     <None Remove="Resource\export-excel.png" />
+    <None Remove="Resource\Font\Inter-Black.ttf" />
+    <None Remove="Resource\Font\Inter-Bold.ttf" />
+    <None Remove="Resource\Font\Inter-ExtraBold.ttf" />
+    <None Remove="Resource\Font\Inter-ExtraLight.ttf" />
+    <None Remove="Resource\Font\Inter-Light.ttf" />
+    <None Remove="Resource\Font\Inter-Medium.ttf" />
+    <None Remove="Resource\Font\Inter-Regular.ttf" />
+    <None Remove="Resource\Font\Inter-SemiBold.ttf" />
+    <None Remove="Resource\Font\Inter-Thin.ttf" />
+    <None Remove="Resource\Font\Inter-VariableFont_slnt,wght.ttf" />
+    <None Remove="Resource\Font\Quicksand-Bold.ttf" />
+    <None Remove="Resource\Font\Quicksand-Light.ttf" />
+    <None Remove="Resource\Font\Quicksand-Medium.ttf" />
+    <None Remove="Resource\Font\Quicksand-Regular.ttf" />
+    <None Remove="Resource\Font\Quicksand-SemiBold.ttf" />
+    <None Remove="Resource\Font\Quicksand-VariableFont_wght.ttf" />
     <None Remove="Resource\Logo.png" />
-    <None Remove="Resource\LogoutIcon.png" />
+    <None Remove="Resource\quanligv.png" />
+    <None Remove="Resource\quanlilop.png" />
+    <None Remove="Resource\quanlitaikhoan.png" />
     <None Remove="Resource\saveicon.png" />
+    <None Remove="Resource\thoatchuongtrinh.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +47,10 @@
     <Resource Include="Resource\addicon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resource\Background.png">
+    <Resource Include="Resource\backicon.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resource\backicon.png">
+    <Resource Include="Resource\bg.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\delicon.png">
@@ -43,13 +62,70 @@
     <Resource Include="Resource\export-excel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resource\Font\Inter-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-ExtraBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-Thin.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Inter-VariableFont_slnt,wght.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-Medium.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\Font\Quicksand-VariableFont_wght.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resource\Logo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resource\LogoutIcon.png">
+    <Resource Include="Resource\quanligv.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\quanlilop.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\quanlitaikhoan.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resource\saveicon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resource\thoatchuongtrinh.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

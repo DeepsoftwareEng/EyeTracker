@@ -41,7 +41,13 @@
         <ScrollViewer Grid.Row="1">
             <WrapPanel x:Name="AccountWrp"
                        Background="LightGray"
-                       />
+                       >
+                <WrapPanel.Resources>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="10,10,0,0"/>
+                    </Style>
+                </WrapPanel.Resources>
+            </WrapPanel>
         </ScrollViewer>
         <Comp:AccountInfo x:Name="AccountInfo"
                           Grid.Row="1"

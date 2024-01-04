@@ -124,7 +124,7 @@ namespace EyeTracker.MVVM.View
 
         private void TextBlock_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            this.NavigationService.Navigate(new Recovery());
         }
     }
 }

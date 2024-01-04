@@ -106,7 +106,7 @@ namespace EyeTracker.MVVM.View
 
         private void SaveEditAccount(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string query = "Update TaiKhoan set MatKhau = @matkhau, Chucvu = @chucvu where TenTaiKhoan = @tk";
+            string query = "Update TaiKhoan set MatKhau = @matkhau, Chucvu = @chucvu, Email = @email where TenTaiKhoan = @tk";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
@@ -115,6 +115,7 @@ namespace EyeTracker.MVVM.View
                 cmd.Parameters.AddWithValue("@matkhau", AccountChange.PasswordTxb.Text);
                 cmd.Parameters.AddWithValue("@chucvu", AccountChange.RoleTxb.SelectedItem);
                 cmd.Parameters.AddWithValue("@tk", AccountChange.AccountTxb.Text);
+                cmd.Parameters.AddWithValue("@email", AccountChange.EmailTxb.Text);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Thanh cong");
             }catch(Exception ex)
@@ -140,7 +141,7 @@ namespace EyeTracker.MVVM.View
 
         private void SaveNewAccount(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string query = "Insert into TaiKhoan values(@tentk,@matkhau,@role)";
+            string query = "Insert into TaiKhoan values(@tentk,@matkhau,@email,@role)";
             if (dc.GetConnection().State == System.Data.ConnectionState.Closed)
                 dc.GetConnection().Open();
             cmd = new SqlCommand(query, dc.GetConnection());
@@ -149,6 +150,7 @@ namespace EyeTracker.MVVM.View
                 cmd.Parameters.AddWithValue("@tentk", AccountChange.AccountTxb.Text);
                 cmd.Parameters.AddWithValue("@matkhau", AccountChange.PasswordTxb.Text);
                 cmd.Parameters.AddWithValue("@role", AccountChange.RoleTxb.SelectedItem);
+                cmd.Parameters.AddWithValue("@email", AccountChange.EmailTxb.Text);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Them thanh cong");
             }
@@ -179,7 +181,8 @@ namespace EyeTracker.MVVM.View
                     TaiKhoan temp = new();
                     temp.TenTaiKhoan = reader.GetString(0);
                     temp.MatKhau = reader.GetString(1);
-                    temp.Chucvu = reader.GetString(2);
+                    temp.Chucvu = reader.GetString(3);
+                    temp.Email = reader.GetString(2);
                     taikhoans.Add(temp);
                     AccountTab at = new AccountTab(temp.Chucvu, temp.TenTaiKhoan);
                     at.MouseLeftButtonDown += ChooseAccount;

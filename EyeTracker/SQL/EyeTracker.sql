@@ -4,6 +4,7 @@ drop database EyeTracker
 create table TaiKhoan(
   TenTaiKhoan varchar(50),
   MatKhau varchar(50),
+  Email varchar(50),
   ChucVu varchar(10),
   primary key(TenTaiKhoan)
 );

@@ -12,6 +12,7 @@
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,20 +20,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Tên tài khoản:"
-                   
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"/>
         <TextBlock Text="Mật khẩu:"
                    Grid.Row="1"
-                   
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"/>
         <TextBlock Text="Chức vụ:"
                    Grid.Row="2"
-                   
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"/>
-        <Grid Grid.Row="3"
+        <TextBlock Text="Email:"
+                   Grid.Row="3"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+        <Grid Grid.Row="4"
               Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -74,6 +76,12 @@
                    VerticalAlignment="Center"
                    x:Name="PasswordTxb"
                  Width="129"/>
+        <TextBox Grid.Column="1"
+                   Grid.Row="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   x:Name="EmailTxb"
+                    Width="129"/>
         <ComboBox Grid.Column="1"
                    Grid.Row="2"
                    HorizontalAlignment="Center"

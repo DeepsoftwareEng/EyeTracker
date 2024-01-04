@@ -30,12 +30,14 @@ namespace EyeTracker.CustomComponents
             AccountTxb.Text = tk.TenTaiKhoan;
             PasswordTxb.Text = tk.MatKhau;
             RoleTxb.Text = tk.Chucvu;
+            EmailTxt.Text = tk.Email;
         }
         public void ClearData()
         {
             AccountTxb.Text = string.Empty;
             PasswordTxb.Text = string.Empty;
             RoleTxb.Text = string.Empty;
+            EmailTxt.Text = string.Empty;
         }
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {

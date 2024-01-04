@@ -22,7 +22,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#99D1AA7C" 
+        <Rectangle Fill="#BC9328" 
                    Grid.RowSpan="8" />
         <Rectangle Fill="#DDF4EDE4" 
                    Grid.Column="1" 
@@ -43,11 +43,12 @@
             </Ellipse>
             <TextBlock x:Name="TeacherNameTxb"
                     Grid.Column="1"
-                   FontSize="8" 
+                   FontSize="12" 
                    Text="Nguyễn Phúc Hưng"
                    Foreground="Black"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                       TextWrapping="Wrap"/>
         </Grid>
         
        

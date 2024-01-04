@@ -1,4 +1,5 @@
-﻿using EyeTracker.MVVM.Model;
+﻿using DocumentFormat.OpenXml.Drawing.Wordprocessing;
+using EyeTracker.MVVM.Model;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -82,9 +83,12 @@ namespace EyeTracker.MVVM.View
             foreach (var i in result)
             {
                 PieSeries t = new PieSeries();
-                t.Title = i.ToString();
+                t.Title = i.ToString() + "độ";
                 t.Values = new ChartValues<ObservableValue> { new ObservableValue(sameclass.Where(s => s.Mypoia == i).Count())};
-                t.LabelPoint = chartPoint => string.Format(i.ToString()+": " + (chartPoint.Participation*100).ToString().Substring(0,5)+"%");
+                if ((sameclass.Where(s => s.Mypoia == i).Count() / sameclass.Count()).ToString().Length > 4)
+                    t.LabelPoint = chartPoint => string.Format(i.ToString() + ": " + (chartPoint.Participation * 100).ToString().Substring(0, 4) + "%");
+                else
+                    t.LabelPoint = chartPoint => string.Format(i.ToString() + ": " + (chartPoint.Participation * 100).ToString() + "%");
                 t.DataLabels = true;
                 seriesViews.Add(t);
             }

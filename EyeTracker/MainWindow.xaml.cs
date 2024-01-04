@@ -1,4 +1,5 @@
 ﻿using EyeTracker.MVVM.View;
+using System.IO;
 using System.Windows;
 
 
@@ -14,5 +15,6 @@ namespace EyeTracker
             InitializeComponent();
             MainFrame.NavigationService.Navigate(new LoginUI());
         }
+        
     }
 }

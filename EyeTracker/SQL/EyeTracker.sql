@@ -44,15 +44,15 @@ drop table HocSinh;
 drop table Lop;
 drop table GiaoVien;
 -- Insert tài khoản
-insert into TaiKhoan values ('','','teacher')
-INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
-VALUES ('admin', '123456', 'admin');
-INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
-VALUES ('gv1', '1234', 'Teacher');
-INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, ChucVu)
-VALUES ('gv0', '', 'Teacher');
-insert into TaiKhoan values('gv2','pass2','Teacher'),
-						   ('gv3','pass3','Teacher')
+insert into TaiKhoan values ('','','','teacher')
+INSERT INTO TaiKhoan 
+VALUES ('admin', '123456','nguyenhung2002c3vt@gmail.com' ,'admin');
+INSERT INTO TaiKhoan 
+VALUES ('gv1', '1234','minhvt223@gmail.com', 'Teacher');
+INSERT INTO TaiKhoan 
+VALUES ('gv0', '','', 'Teacher');
+insert into TaiKhoan values('gv2','pass2','','Teacher'),
+						   ('gv3','pass3','','Teacher')
 -- Insert giáo viên
 INSERT INTO GiaoVien (MaGV, TenGV, NgaySinh, TenTaiKhoan)
 VALUES ('GV00', N'', '', 'gv0');

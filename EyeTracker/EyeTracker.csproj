@@ -147,6 +147,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Cookie\" />
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="Log\" />
     <Folder Include="SQL\" />

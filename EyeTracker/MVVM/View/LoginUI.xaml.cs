@@ -22,11 +22,30 @@ namespace EyeTracker.MVVM.View
         private static string projectFolderPath = Directory.GetParent(binFolderPath).FullName;
         private static string fix = projectFolderPath.Remove(projectFolderPath.Length - 9);
         private static string dataFolderPath = System.IO.Path.Combine(fix, "Log");
+        private static string CookieFolderPath = System.IO.Path.Combine(fix, "Cookie");
+        private string currentUsername;
+        private string currentPassword;
         public LoginUI()
         {
             InitializeComponent();
+            if(RemebermeExists() == true)
+            {
+                StreamReader rd = new StreamReader(CookieFolderPath + $"\\RememberMe.txt", Encoding.ASCII);
+                string test = rd.ReadToEnd();
+                rd.Close();
+                string[] currentdata = test.Split('-');
+                currentUsername = currentdata[0];
+                currentPassword = currentdata[1];
+                UsernameTxb.Text = currentUsername;
+                PassTxb.Password = currentPassword;
+            }
         }
-
+        private bool RemebermeExists()
+        {
+            if(!File.Exists(CookieFolderPath + $"\\RememberMe.txt"))
+            return false;
+            return true;
+        }
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             int temp = 0;
@@ -77,6 +96,18 @@ namespace EyeTracker.MVVM.View
                         string content = $"{UsernameTxb.Text}-{DateTime.Now}: Login as Admin";
                         File.AppendAllText(filepath, content);
                     }
+                    if(RememberCkb.IsChecked == true)
+                    {
+                        if (!File.Exists(CookieFolderPath + $"\\RememberMe.txt"))
+                            File.Create(CookieFolderPath + $"\\RememberMe.txt").Close();
+                        StreamWriter writer = new StreamWriter(filepath);
+                        writer.Write($"{UsernameTxb.Text}-{PassTxb.Password}-admin");
+                        writer.Close();
+                    }
+                    else
+                    {
+                        File.Delete(CookieFolderPath + $"\\RememberMe.txt");
+                    }
                     this.NavigationService.Navigate(new AdminUI(UsernameTxb.Text));
                 }
                 else
@@ -110,6 +141,21 @@ namespace EyeTracker.MVVM.View
                     {
                         string content = $"{magv}-{DateTime.Now}: Login as Teacher";
                         File.AppendAllText(filepath, content);
+                    }
+                    if (RememberCkb.IsChecked == true)
+                    {
+                        if (!File.Exists(CookieFolderPath + $"\\RememberMe.txt"))
+                            File.Create(CookieFolderPath + $"\\RememberMe.txt").Close();
+                        if((PassTxb.Password != currentPassword || UsernameTxb.Text != currentUsername) && currentPassword != string.Empty && currentUsername!= string.Empty) {
+                            File.WriteAllText(CookieFolderPath + $"\\RememberMe.txt", string.Empty);    
+                        }
+                        StreamWriter writer = new StreamWriter(CookieFolderPath + $"\\RememberMe.txt");
+                        writer.Write($"{UsernameTxb.Text}-{PassTxb.Password}-teacher");
+                        writer.Close();
+                    }
+                    else
+                    {
+                        File.Delete(CookieFolderPath + $"\\RememberMe.txt");
                     }
                     this.NavigationService.Navigate(new MainMenuUI(magv, tengv));
                 }
